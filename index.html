@@ -60,16 +60,8 @@
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
-        /* Premium Badge */
-        .badge-container { display: flex; justify-content: center; margin-top: 25px; }
-        .badge-lmra {
-            background: #fff9eb; color: var(--lmra-gold); border: 1px solid #ffeeba;
-            padding: 6px 16px; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
-            display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(214, 158, 46, 0.05);
-        }
-
         /* Hero Section */
-        .hero { text-align: center; padding: 40px 24px 30px; }
+        .hero { text-align: center; padding: 50px 24px 30px; background: white; }
         .hero h1 { font-size: 2.4rem; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.5px; }
         .hero p { font-size: 1.1rem; color: #475569; max-width: 620px; margin: 0 auto 25px; line-height: 1.6; }
         .btn-main {
@@ -81,8 +73,24 @@
 
         /* Section Global Layout */
         section { padding: 50px 6%; text-align: center; }
-        .section-title { font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 12px; }
+        .section-title { font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 16px; }
         .section-desc { font-size: 1.05rem; color: #475569; max-width: 750px; margin: 0 auto 35px; line-height: 1.6; }
+
+        /* Exclusive Sri Lanka Highlight Box */
+        .exclusive-box {
+            background: #fff9eb; border: 2px solid #ffeeba; border-radius: 16px; 
+            padding: 40px 24px; max-width: 900px; margin: 40px auto; 
+            box-shadow: 0 10px 30px rgba(214, 158, 46, 0.1); text-align: center;
+        }
+        .exclusive-box h2 { color: var(--lmra-gold); font-size: 1.8rem; margin-bottom: 15px; }
+        .exclusive-box p { color: #475569; font-size: 1.1rem; line-height: 1.6; font-weight: 500; }
+
+        /* Trust Sections (Medical & LMRA) */
+        .trust-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .trust-card { background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; }
+        .trust-card img { max-width: 70px; margin-bottom: 20px; }
+        .trust-card h3 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 15px; }
+        .trust-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
 
         /* Roles & Services Layout */
         .roles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1100px; margin: 0 auto; }
@@ -96,42 +104,46 @@
         .role-card p { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
 
         /* Flags Gallery Layout */
-        .countries-section { background: white; }
         .flag-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1000px; margin: 0 auto; }
         .flag-card {
-            background: var(--bg-light); padding: 12px; border-radius: 12px; width: 150px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02); text-align: center; border-bottom: 3px solid var(--accent-red);
+            background: var(--card-bg); padding: 12px; border-radius: 12px; width: 150px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04); text-align: center; border-bottom: 3px solid var(--accent-red);
         }
-        .flag-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .flag-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
         .flag-card img { width: 100%; height: 75px; object-fit: contain; border-radius: 6px; margin-bottom: 10px; background: #fff; border: 1px solid #e2e8f0; }
-        .flag-card h3 { font-size: 0.95rem; color: var(--text-dark); }
+        .flag-card h3 { font-size: 0.95rem; color: var(--text-dark); font-weight: bold; }
 
         /* Smart Contact Elements */
+        .contact-section { background: white; }
         .contact-grid { display: flex; flex-direction: column; align-items: center; gap: 15px; max-width: 500px; margin: 0 auto; }
         .contact-box { background: var(--bg-light); border-radius: 12px; width: 100%; text-align: center; font-weight: 600; font-size: 1.05rem; box-shadow: 0 2px 8px rgba(0,0,0,0.01); }
         .contact-box a { color: var(--primary-blue); text-decoration: none; display: block; padding: 16px 25px; }
         .contact-box:hover { background: var(--primary-blue); color: white; }
         .contact-box:hover a { color: white; }
         
-        /* Specific dynamic handling for wide text block to prevent layout breaking */
-        .email-box { font-size: 0.95rem; letter-spacing: -0.3px; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        /* Solves the email overlap/cut-off issue perfectly */
+        .email-box { 
+            word-break: break-word; 
+            white-space: normal; 
+            line-height: 1.4;
+        }
 
         /* Footer Elements */
-        footer { background: var(--primary-blue); color: white; text-align: center; padding: 35px 24px; }
+        footer { background: var(--primary-blue); color: white; text-align: center; padding: 40px 24px; }
         footer p { margin-bottom: 8px; opacity: 0.85; font-size: 0.95rem; }
         .cr-number { color: #fcd34d; font-weight: bold; font-size: 1.15rem; margin-top: 12px; letter-spacing: 0.5px; }
 
         /* Global Right-to-Left Alignment Engine */
         [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card { text-align: center; }
+        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box { text-align: center; }
         
-        /* Mobile System Optimization Override */
+        /* Mobile System Optimization */
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.95rem; }
             .section-title { font-size: 1.6rem; }
             .roles-grid { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 10px 5px 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
             .role-card { min-width: 230px; scroll-snap-align: center; }
-            .email-box { font-size: 0.85rem; padding: 16px 12px !important; }
+            .trust-card { padding: 25px 15px; }
         }
     </style>
 </head>
@@ -156,32 +168,26 @@
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
-        <!-- Compliance Banner Block -->
-        <div class="badge-container fade-in stagger-1">
-            <div class="badge-lmra" data-en="✓ Fully Compliant with LMRA Regulations" data-ar="✓ متوافقون تماماً مع تنظيمات هيئة تنظيم سوق العمل">
-                ✓ Fully Compliant with LMRA Regulations
-            </div>
-        </div>
-
-        <!-- Main Branded Introduction Grid -->
-        <section class="hero fade-in stagger-2">
-            <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 180px; margin-0 auto 20px;" onerror="this.style.display='none'">
+        <!-- Hero Section -->
+        <section class="hero fade-in stagger-1">
+            <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 180px; margin: 0 auto 20px;" onerror="this.style.display='none'">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
             <p data-en="Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations." data-ar="نربط العائلات في مملكة البحرين بكفاءات وموارد بشرية متخصصة وموثوقة. تلتزم عمليات التوظيف لدينا بقوانين العمل واللوائح التنفيذية المحلية بشكل صارم.">Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations.</p>
             <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Direct Consultation via WhatsApp" data-ar="💬 استشارة مباشرة عبر الواتساب">💬 Direct Consultation via WhatsApp</a>
         </section>
 
-        <!-- Dynamic Organizational Objectives Text Sections -->
-        <section class="slide-up stagger-3" style="background: white;">
-            <h2 class="section-title" data-en="Our Vision" data-ar="رؤيتنا">Our Vision</h2>
-            <p class="section-desc" data-en="To build institutional excellence in domestic service sourcing across Bahrain, providing families with lawful, transparent, and safe placements that give absolute peace of mind." data-ar="بناء التميز المؤسسي في استقطاب العمالة المنزلية بجميع أنحاء البحرين، وتزويد الأسر بتوظيف قانوني وشفاف وآمن يمنح راحة البال المطلقة.">To build institutional excellence in domestic service sourcing across Bahrain, providing families with lawful, transparent, and safe placements that give absolute peace of mind.</p>
-
-            <h2 class="section-title" data-en="What We Do" data-ar="ما نقوم به" style="margin-top: 30px;">What We Do</h2>
-            <p class="section-desc" data-en="We manage candidate verification and visa coordination to deliver premium solutions tailored to domestic environments while ensuring comprehensive regulatory compliance." data-ar="نتولى إدارة التدقيق والتحقق من الخلفيات للمرشحين وتنسيق التأشيرات لتقديم حلول ممتازة ومصممة خصيصاً للبيئات المنزلية مع ضمان الامتثال التنظيمي الشامل.">We manage candidate verification and visa coordination to deliver premium solutions tailored to domestic environments while ensuring comprehensive regulatory compliance.</p>
-        </section>
+        <!-- Exclusive Sri Lanka Partnership Block -->
+        <div class="fade-in stagger-2" style="padding: 0 6%;">
+            <div class="exclusive-box">
+                <h2 data-en="🌟 Exclusive Sri Lankan Partnerships" data-ar="🌟 شراكات سريلانكية حصرية">🌟 Exclusive Sri Lankan Partnerships</h2>
+                <p data-en="Through our exclusive partnerships with premier Sri Lankan agencies, Al-Nashat proudly offers our clients priority access to highly vetted, premium Sri Lankan domestic profiles that you won't find anywhere else." data-ar="من خلال شراكاتنا الحصرية مع كبرى الوكالات السريلانكية، تفخر شركة النشاط بتقديم أولوية الوصول لعملائنا إلى سير ذاتية متميزة وموثوقة للعمالة السريلانكية والتي لن تجدوها في أي مكان آخر.">
+                    Through our exclusive partnerships with premier Sri Lankan agencies, Al-Nashat proudly offers our clients priority access to highly vetted, premium Sri Lankan domestic profiles that you won't find anywhere else.
+                </p>
+            </div>
+        </div>
 
         <!-- Authorized Specializations Sub-section -->
-        <section class="slide-up stagger-4">
+        <section class="slide-up stagger-3" style="background: white;">
             <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
             <p class="section-desc" data-en="All human resource fields are qualified in accordance with professional training standards and local deployment criteria." data-ar="جميع الكوادر مؤهلة وفقاً لمعايير التدريب المهني واشتراطات الاستقدام المحلية.">All human resource fields are qualified in accordance with professional training standards and local deployment criteria.</p>
             
@@ -209,31 +215,50 @@
             </div>
         </section>
 
-        <!-- Global Recruitment Sourcing Channels -->
-        <section class="countries-section slide-up stagger-5">
-            <h2 class="section-title" data-en="Global Sourcing Channels" data-ar="قنوات الاستقدام العالمية">Global Sourcing Channels</h2>
-            <p class="section-desc" data-en="We route placements through officially verified global pathways to guarantee legal processing." data-ar="نوفر الاستقدام عبر مسارات عالمية معتمدة رسمياً لضمان سلامة الإجراءات القانونية.">We route placements through officially verified global pathways to guarantee legal processing.</p>
-            <div class="flag-grid">
-                <div class="flag-card">
-                    <img src="./kenya.png" alt="Kenya" onerror="this.style.display='none'">
-                    <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
+        <!-- Compliance & Medical Trust Section -->
+        <section class="slide-up stagger-4">
+            <h2 class="section-title" data-en="Our Commitment to Safety & Law" data-ar="التزامنا بالسلامة والقانون">Our Commitment to Safety & Law</h2>
+            <div class="trust-grid">
+                <!-- LMRA Block -->
+                <div class="trust-card">
+                    <h3 data-en="🏛️ Officially Licensed Agency" data-ar="🏛️ وكالة مرخصة رسمياً">🏛️ Officially Licensed Agency</h3>
+                    <p data-en="Al-Nashat Manpower Services is a fully licensed manpower agency operating out of Muharraq, Kingdom of Bahrain. We operate in strict compliance with the Labor Market Regulatory Authority (LMRA) and local deployment regulations, ensuring complete legal security for both Bahraini employers and international resources." data-ar="شركة النشاط للقوى العاملة هي وكالة مرخصة رسمياً تعمل من المحرق، مملكة البحرين. نحن نعمل بامتثال تام مع هيئة تنظيم سوق العمل (LMRA) ولوائح الاستقدام المحلية، مما يضمن الأمان القانوني الكامل لكل من أصحاب العمل في البحرين والموارد البشرية الدولية.">
+                        Al-Nashat Manpower Services is a fully licensed manpower agency operating out of Muharraq, Kingdom of Bahrain. We operate in strict compliance with the Labor Market Regulatory Authority (LMRA) and local deployment regulations, ensuring complete legal security for both Bahraini employers and international resources.
+                    </p>
                 </div>
+                <!-- Medical Block -->
+                <div class="trust-card">
+                    <!-- Inserted the cross.png here -->
+                    <img src="./cross.png" alt="Medical Cross" onerror="this.style.display='none'">
+                    <h3 data-en="Fully Medically Certified" data-ar="شهادات طبية معتمدة">Fully Medically Certified</h3>
+                    <p data-en="Every domestic worker placed through Al-Nashat undergoes rigorous, comprehensive medical screenings and health checks. We guarantee all candidates are fully certified, healthy, and fit for deployment before they ever enter your home." data-ar="يخضع جميع العمالة المنزلية لدينا لفحوصات طبية وصحية شاملة وصارمة. نحن نضمن أن جميع المرشحين معتمدون طبياً وأصحاء ولائقون للعمل قبل دخولهم إلى منزلك.">
+                        Every domestic worker placed through Al-Nashat undergoes rigorous, comprehensive medical screenings and health checks. We guarantee all candidates are fully certified, healthy, and fit for deployment before they ever enter your home.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Recruitment Sourcing Channels -->
+        <section class="slide-up stagger-5" style="background: white;">
+            <h2 class="section-title" data-en="Global Sourcing Channels" data-ar="قنوات الاستقدام العالمية">Global Sourcing Channels</h2>
+            <p class="section-desc" data-en="In addition to our exclusive Sri Lankan network, we route placements through officially verified pathways globally." data-ar="بالإضافة إلى شبكتنا السريلانكية الحصرية، نوفر الاستقدام عبر مسارات عالمية معتمدة رسمياً.">In addition to our exclusive Sri Lankan network, we route placements through officially verified pathways globally.</p>
+            <div class="flag-grid">
+                <!-- Correct order applied -->
                 <div class="flag-card">
-                    <img src="./uganda.png" alt="Uganda" onerror="this.style.display='none'">
-                    <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
+                    <img src="./philippines.jpeg" alt="Philippines" onerror="this.src='./philippines.png'; this.onerror=function(){this.style.display='none';};">
+                    <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
                 </div>
                 <div class="flag-card">
                     <img src="./ethiopia.png" alt="Ethiopia" onerror="this.style.display='none'">
                     <h3 data-en="Ethiopia" data-ar="إثيوبيا">Ethiopia</h3>
                 </div>
-                <!-- Dynamic backup string verification logic handles .png lookup fallback -->
                 <div class="flag-card">
-                    <img src="./philippines.png" alt="Philippines" onerror="this.src='./philippines.jpeg'; this.onerror=function(){this.style.display='none';};">
-                    <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
+                    <img src="./kenya.png" alt="Kenya" onerror="this.style.display='none'">
+                    <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
                 </div>
                 <div class="flag-card">
-                    <img src="./srilanka.png" alt="Sri Lanka" onerror="this.style.display='none'">
-                    <h3 data-en="Sri Lanka" data-ar="سريلانكا">Sri Lanka</h3>
+                    <img src="./uganda.jpeg" alt="Uganda" onerror="this.src='./uganda.png'; this.onerror=function(){this.style.display='none';};">
+                    <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
                 </div>
             </div>
         </section>
@@ -251,7 +276,7 @@
                 <div class="contact-box">
                     <a href="https://wa.me/97334219006">📱 Mobile Liaison 2: 3421 9006</a>
                 </div>
-                <!-- The custom inline style layout class here guarantees total structural horizontal integrity -->
+                <!-- Email box with break-word to prevent layout breaking -->
                 <div class="contact-box">
                     <a href="mailto:alnashatmanpowerofficial@gmail.com" class="email-box">✉️ alnashatmanpowerofficial@gmail.com</a>
                 </div>
@@ -263,6 +288,7 @@
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
             <p data-en="Muharraq, Kingdom of Bahrain" data-ar="المحرق، مملكة البحرين">Muharraq, Kingdom of Bahrain</p>
+            <!-- Commercial Registration Number ONLY -->
             <p class="cr-number">CR: 25545-4</p>
         </footer>
 
