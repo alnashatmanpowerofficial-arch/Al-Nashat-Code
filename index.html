@@ -3,204 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Nashat Manpower Services | Al Muharraq, Bahrain</title>
+    <title>Al-Nashat Manpower Services</title>
     <style>
-        /* Base Styles & Colors */
+        /* Base Variables & Reset */
         :root {
-            --primary-blue: #1A365D;
-            --accent-gold: #D69E2E;
-            --bg-light: #F7FAFC;
-            --text-dark: #2D3748;
-            --whatsapp-green: #25D366;
+            --primary-blue: #0033a0;
+            --accent-red: #e3000f;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --card-bg: #ffffff;
+            --whatsapp: #25D366;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
-        
-        /* Typography */
-        h1, h2, h3 { color: var(--primary-blue); margin-bottom: 15px; }
-        p { margin-bottom: 15px; }
-        
-        /* Header / Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
-            color: white; 
-            padding: 100px 20px; 
-            text-align: center; 
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; transition: all 0.3s ease; }
+        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+
+        /* Splash Screen Modal */
+        #splash-screen {
+            position: fixed; inset: 0; background: white; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .hero h1 { color: white; font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px auto; opacity: 0.95; }
-        
-        /* Buttons */
-        .btn-whatsapp { 
-            background-color: var(--whatsapp-green); color: white; padding: 15px 30px; 
-            text-decoration: none; font-size: 1.1rem; font-weight: bold; border-radius: 50px; 
-            display: inline-block; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); margin: 10px;
+        .splash-logo { max-width: 300px; margin-bottom: 40px; }
+        .lang-btn-container { display: flex; gap: 20px; }
+        .btn-lang {
+            padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border: 2px solid var(--primary-blue);
+            background: white; color: var(--primary-blue); border-radius: 50px; cursor: pointer;
         }
-        .btn-whatsapp:hover { transform: translateY(-3px); background-color: #1ebe57; }
+        .btn-lang:hover { background: var(--primary-blue); color: white; }
 
-        .btn-call {
-            background-color: white; color: var(--primary-blue); padding: 12px 20px;
-            text-decoration: none; font-weight: bold; border-radius: 50px; border: 2px solid var(--primary-blue);
-            display: inline-block; transition: 0.3s; margin: 5px; font-size: 0.95rem;
-        }
-        .btn-call:hover { background-color: var(--primary-blue); color: white; }
-
-        /* Sections */
-        .section { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .section-light { background-color: white; }
-        .text-center { text-align: center; }
-
-        /* About Grid */
-        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; }
-        .about-card { background: var(--bg-light); padding: 30px; border-radius: 12px; border-top: 4px solid var(--accent-gold); }
-
-        /* Staff & Services Grid */
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
-        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; border: 1px solid #edf2f7; }
+        /* Main Website Layout */
+        #main-content { display: none; opacity: 0; }
         
-        /* Compliance Banner */
-        .compliance-banner { background-color: var(--primary-blue); color: white; text-align: center; padding: 30px 20px; margin-top: 40px; border-radius: 10px; }
-        .compliance-banner h3 { color: var(--accent-gold); }
+        /* Navigation / Header */
+        header {
+            background: white; padding: 15px 5%; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .nav-logo { max-height: 60px; }
+        .toggle-lang {
+            background: var(--bg-light); color: var(--primary-blue); border: 1px solid #cbd5e1;
+            padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: bold;
+        }
 
-        /* Countries List */
-        .countries { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
-        .country-tag { background: var(--primary-blue); color: white; padding: 8px 20px; border-radius: 50px; font-weight: bold; }
+        /* Hero Section */
+        .hero { text-align: center; padding: 80px 20px 50px; }
+        .hero h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 20px; }
+        .hero p { font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
+        .btn-main {
+            background: var(--whatsapp); color: white; text-decoration: none; padding: 15px 35px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 50px; display: inline-block;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
 
-        /* Contact Section */
-        .contact-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 800px; margin: auto; text-align: center; }
-        .dialer-group { margin: 20px 0; padding: 20px; background: var(--bg-light); border-radius: 10px; }
-        .email-link { color: var(--primary-blue); font-size: 1.1rem; font-weight: bold; text-decoration: none; display: inline-block; margin-bottom: 25px; transition: 0.2s; }
-        .email-link:hover { color: var(--accent-gold); }
+        /* Flags Gallery */
+        .countries-section { padding: 50px 20px; text-align: center; }
+        .countries-section h2 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 40px; }
+        .flag-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto;
+        }
+        .flag-card {
+            background: var(--card-bg); padding: 15px; border-radius: 15px; width: 160px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border-bottom: 4px solid var(--accent-red);
+        }
+        .flag-card img { width: 100%; height: 85px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .flag-card h3 { font-size: 1rem; color: var(--text-dark); }
+
+        /* Contact Details */
+        .contact-section { background: white; padding: 60px 20px; text-align: center; }
+        .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
+        .contact-box { background: var(--bg-light); padding: 20px 40px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; }
+        .contact-box a { color: var(--primary-blue); text-decoration: none; }
 
         /* Footer */
-        footer { background: var(--primary-blue); color: white; text-align: center; padding: 20px; margin-top: 50px; font-size: 0.9rem; }
+        footer { background: var(--primary-blue); color: white; text-align: center; padding: 40px 20px; }
+        footer p { margin-bottom: 10px; opacity: 0.9; }
+        .cr-number { color: #fcd34d; font-weight: bold; font-size: 1.2rem; margin-top: 15px; }
+
+        /* RTL Support for Arabic */
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .hero, [dir="rtl"] .countries-section, [dir="rtl"] .contact-section, [dir="rtl"] footer { text-align: center; }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>Al-Nashat Manpower Services</h1>
-        <p>Connecting families in Bahrain with reliable, skilled, and trustworthy domestic workers. Professional, approachable, and focused entirely on quality and trust.</p>
-        <a href="https://wa.me/97333226722" class="btn-whatsapp">💬 Chat on WhatsApp</a>
-    </section>
+    <!-- Splash Screen Gatekeeper -->
+    <div id="splash-screen">
+        <img src="logo.png" alt="Al-Nashat Logo" class="splash-logo">
+        <h2 style="margin-bottom: 30px; color: var(--primary-blue);">Select Language / اختر اللغة</h2>
+        <div class="lang-btn-container">
+            <button class="btn-lang" onclick="enterSite('en')">English</button>
+            <button class="btn-lang" onclick="enterSite('ar')">العربية</button>
+        </div>
+    </div>
 
-    <!-- MISSION & VISION -->
-    <section class="section section-light">
-        <h2 class="text-center">Who We Are</h2>
-        <p class="text-center" style="max-width: 700px; margin: auto;">We are a proudly Bahraini-based agency located in Al Muharraq. Our ideal clients are families looking for dependable household help, busy professionals needing domestic workers, and elderly individuals requiring dedicated caregivers.</p>
+    <!-- Main Website -->
+    <div id="main-content">
         
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>Our Mission</h3>
-                <p>To provide dependable manpower solutions to make daily life easier for families through ethical recruitment and strong customer care.</p>
-            </div>
-            <div class="about-card">
-                <h3>Our Vision</h3>
-                <p>To become one of the most trusted and recognized manpower service providers in Al Bahrain. Building long-term relationships with clients through reliability, honesty, and service excellence.</p>
-            </div>
-        </div>
+        <!-- Header -->
+        <header>
+            <img src="logo.png" alt="Al-Nashat Logo" class="nav-logo">
+            <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
+        </header>
 
-        <div class="compliance-banner">
-            <h3>🇧🇭 LMRA Approved Agency</h3>
-            <p>We are a fully licensed and LMRA approved agency. We follow all labor laws and we follow every single guideline the government and His Majesty has put for us to ensure the highest ethical standards.</p>
-        </div>
-    </section>
+        <!-- Hero -->
+        <section class="hero">
+            <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
+            <p data-en="Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved." data-ar="نربط العائلات في البحرين بعمالة منزلية موثوقة وماهرة. معتمدون بالكامل من هيئة تنظيم سوق العمل.">Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved.</p>
+            <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Chat on WhatsApp" data-ar="💬 تواصل عبر الواتساب">💬 Chat on WhatsApp</a>
+        </section>
 
-    <!-- DOMESTIC STAFFING PROFILES -->
-    <section class="section">
-        <h2 class="text-center">Our Domestic Staffing Solutions</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>🧹 Cleaners</h3>
-                <p>Thorough and organized staff to maintain the pristine condition of your home.</p>
+        <!-- Dynamic Flags Gallery -->
+        <section class="countries-section">
+            <h2 data-en="Countries Available Today" data-ar="الدول المتاحة اليوم">Countries Available Today</h2>
+            <div class="flag-grid">
+                <div class="flag-card">
+                    <img src="kenya.png" alt="Kenya">
+                    <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
+                </div>
+                <div class="flag-card">
+                    <img src="uganda.png" alt="Uganda">
+                    <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
+                </div>
+                <div class="flag-card">
+                    <img src="ethiopia.png" alt="Ethiopia">
+                    <h3 data-en="Ethiopia" data-ar="إثيوبيا">Ethiopia</h3>
+                </div>
+                <div class="flag-card">
+                    <img src="philippines.png" alt="Philippines">
+                    <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
+                </div>
+                <div class="flag-card">
+                    <img src="srilanka.png" alt="Sri Lanka">
+                    <h3 data-en="Sri Lanka" data-ar="سريلانكا">Sri Lanka</h3>
+                </div>
             </div>
-            <div class="card">
-                <h3>🍳 Cooks & Kitchen Helpers</h3>
-                <p>Skilled culinary help to assist with daily meal preparation and kitchen management.</p>
-            </div>
-            <div class="card">
-                <h3>👶 Nannies & Childcare</h3>
-                <p>Caring and patient assistants to help nurture and look after your children.</p>
-            </div>
-            <div class="card">
-                <h3>👵 Caregivers</h3>
-                <p>Compassionate caregivers specifically trained for the elderly.</p>
-            </div>
-            <div class="card">
-                <h3>🏠 General Domestic Workers</h3>
-                <p>Versatile and reliable help for all-around household duties.</p>
-            </div>
-        </div>
+        </section>
 
-        <div class="text-center" style="margin-top: 50px;">
-            <h3>Sourcing from Trusted Nations</h3>
-            <div class="countries">
-                <span class="country-tag">Sri Lanka 🇱🇰</span>
-                <span class="country-tag">Philippines 🇵🇭</span>
-                <span class="country-tag">Ethiopia 🇪🇹</span>
-                <span class="country-tag">Uganda 🇺🇬</span>
-                <span class="country-tag">Kenya 🇰🇪</span>
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 data-en="Contact Us" data-ar="اتصل بنا" style="color: var(--primary-blue);">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-box">📞 <a href="tel:+97317001098">1700 1098</a></div>
+                <div class="contact-box">📱 <a href="https://wa.me/97333226722">3322 6722</a></div>
+                <div class="contact-box">📱 <a href="https://wa.me/97334219006">3421 9006</a></div>
+                <div class="contact-box" style="width: 100%; max-width: 400px;">✉️ <a href="mailto:alnashatmanpowerofficial@gmail.com">alnashatmanpowerofficial@gmail.com</a></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- AGENCY SERVICES -->
-    <section class="section section-light">
-        <h2 class="text-center">Our Agency Services</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>Recruitment & Sourcing</h3>
-                <p>Finding the perfect match for your family's specific needs.</p>
-            </div>
-            <div class="card">
-                <h3>Visa Processing</h3>
-                <p>Handling all paperwork to ensure a smooth and legal entry.</p>
-            </div>
-            <div class="card">
-                <h3>Contract Authentication</h3>
-                <p>Ensuring all documentation is officially verified and compliant.</p>
-            </div>
-            <div class="card">
-                <h3>Post-Placement Support</h3>
-                <p>We remain available to assist you even after the placement is complete.</p>
-            </div>
-        </div>
-    </section>
+        <!-- Footer -->
+        <footer>
+            <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
+            <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
+            <p data-en="Muharraq, Kingdom of Bahrain" data-ar="المحرق، مملكة البحرين">Muharraq, Kingdom of Bahrain</p>
+            <p class="cr-number" data-en="CR: 25545-4" data-ar="سجل تجاري: 25545-4">CR: 25545-4</p>
+        </footer>
 
-    <!-- CONTACT SECTION -->
-    <section class="section">
-        <div class="contact-box">
-            <h2>Consult Us Today</h2>
-            <p>Our team is ready to assist you. Tap any number below to call us directly, send an email, or chat with us on WhatsApp.</p>
+    </div>
+
+    <!-- Translation Logic -->
+    <script>
+        let currentLang = 'en';
+
+        function enterSite(lang) {
+            document.getElementById('splash-screen').style.display = 'none';
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.display = 'block';
+            setTimeout(() => { mainContent.style.opacity = '1'; }, 50);
+            applyLanguage(lang);
+        }
+
+        function switchLanguage() {
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            applyLanguage(newLang);
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
             
-            <div class="dialer-group">
-                <a href="tel:+97317001098" class="btn-call">📞 Landline: 1700 1098</a>
-                <a href="tel:+97333226722" class="btn-call">📱 Mobile: 3322 6722</a>
-                <a href="tel:+97334219006" class="btn-call">📱 Mobile: 3421 9006</a>
-            </div>
+            // Set text direction (Right-to-Left for Arabic)
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
 
-            <a href="mailto:alnashatmanpowerofficial@gmail.com" class="email-link">✉️ alnashatmanpowerofficial@gmail.com</a>
-            
-            <div style="margin-top: 10px; margin-bottom: 20px;">
-                <a href="https://wa.me/97333226722" class="btn-whatsapp">💬 WhatsApp 3322 6722</a>
-                <a href="https://wa.me/97334219006" class="btn-whatsapp">💬 WhatsApp 3421 9006</a>
-            </div>
+            // Change button text
+            document.getElementById('lang-toggle-btn').innerText = lang === 'en' ? 'العربية' : 'English';
 
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0;">
-            
-            <h3>Office Location</h3>
-            <p><strong>Al-Nashat Manpower Services</strong></p>
-            <p>Office No. 173 P, Road No. 3<br>Block No. 212, Muharraq<br>Kingdom of Bahrain</p>
-            <p style="margin-top: 15px; color: var(--primary-blue); font-weight: bold;">CR: 255 45-4</p>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Al-Nashat Manpower Services. All Rights Reserved.</p>
-    </footer>
-
+            // Swap all translated text
+            document.querySelectorAll('[data-en]').forEach(element => {
+                element.innerText = element.getAttribute(`data-${lang}`);
+            });
+        }
+    </script>
 </body>
 </html>
