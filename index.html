@@ -13,100 +13,126 @@
             --text-dark: #1e293b;
             --card-bg: #ffffff;
             --whatsapp: #25D366;
+            --lmra-gold: #D69E2E;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; transition: all 0.3s ease; }
-        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; transition: all 0.25s ease; }
+        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* Animations */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        /* Premium Animations */
+        @keyframes customFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes customSlideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        .fade-in { animation: fadeIn 1s ease-in-out forwards; }
-        .slide-up { opacity: 0; animation: slideUp 0.8s ease-out forwards; }
+        .fade-in { animation: customFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .slide-up { opacity: 0; animation: customSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* Staggered animation delays for flags */
-        .flag-card:nth-child(1) { animation-delay: 0.1s; }
-        .flag-card:nth-child(2) { animation-delay: 0.2s; }
-        .flag-card:nth-child(3) { animation-delay: 0.3s; }
-        .flag-card:nth-child(4) { animation-delay: 0.4s; }
-        .flag-card:nth-child(5) { animation-delay: 0.5s; }
+        /* Staggered delays for a fluid visual flow */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
 
         /* Splash Screen Modal */
         #splash-screen {
             position: fixed; inset: 0; background: white; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .splash-logo { max-width: 300px; margin-bottom: 40px; }
+        .splash-logo { max-width: 280px; margin-bottom: 30px; }
         .lang-btn-container { display: flex; gap: 20px; }
         .btn-lang {
-            padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border: 2px solid var(--primary-blue);
+            padding: 14px 35px; font-size: 1.1rem; font-weight: bold; border: 2px solid var(--primary-blue);
             background: white; color: var(--primary-blue); border-radius: 50px; cursor: pointer;
         }
-        .btn-lang:hover { background: var(--primary-blue); color: white; transform: scale(1.05); }
+        .btn-lang:hover { background: var(--primary-blue); color: white; transform: translateY(-2px); }
 
         /* Main Website Layout */
         #main-content { display: none; opacity: 0; }
         
-        /* Navigation / Header */
+        /* Navigation Header */
         header {
-            background: white; padding: 15px 5%; display: flex; justify-content: space-between;
-            align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+            background: white; padding: 12px 6%; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 100;
         }
-        .nav-logo { max-height: 60px; }
+        .nav-logo { max-height: 50px; }
         .toggle-lang {
             background: var(--bg-light); color: var(--primary-blue); border: 1px solid #cbd5e1;
-            padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: bold;
+            padding: 8px 18px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.95rem;
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
+        /* Premium Badge */
+        .badge-container { display: flex; justify-content: center; margin-top: 25px; }
+        .badge-lmra {
+            background: #fff9eb; color: var(--lmra-gold); border: 1px solid #ffeeba;
+            padding: 6px 16px; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+            display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(214, 158, 46, 0.05);
+        }
+
         /* Hero Section */
-        .hero { text-align: center; padding: 50px 20px 40px; }
-        .hero h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 20px; }
-        .hero p { font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
+        .hero { text-align: center; padding: 40px 24px 30px; }
+        .hero h1 { font-size: 2.4rem; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.5px; }
+        .hero p { font-size: 1.1rem; color: #475569; max-width: 620px; margin: 0 auto 25px; line-height: 1.6; }
         .btn-main {
-            background: var(--whatsapp); color: white; text-decoration: none; padding: 15px 35px;
-            font-size: 1.1rem; font-weight: bold; border-radius: 50px; display: inline-block;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            background: var(--whatsapp); color: white; text-decoration: none; padding: 14px 32px;
+            font-size: 1.05rem; font-weight: bold; border-radius: 50px; display: inline-block;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
         }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35); }
 
-        /* Vision Section */
-        .vision-section { background: white; padding: 40px 20px; text-align: center; }
-        .vision-section h2 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 15px; }
-        .vision-section p { font-size: 1.1rem; color: #475569; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        /* Section Global Layout */
+        section { padding: 50px 6%; text-align: center; }
+        .section-title { font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 12px; }
+        .section-desc { font-size: 1.05rem; color: #475569; max-width: 750px; margin: 0 auto 35px; line-height: 1.6; }
 
-        /* Flags Gallery */
-        .countries-section { padding: 50px 20px; text-align: center; }
-        .countries-section h2 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 40px; }
-        .flag-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto;
+        /* Roles & Services Layout */
+        .roles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1100px; margin: 0 auto; }
+        .role-card {
+            background: var(--card-bg); border-radius: 16px; padding: 25px; width: 240px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; text-align: center;
         }
+        .role-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+        .role-icon { font-size: 2rem; margin-bottom: 12px; display: inline-block; }
+        .role-card h3 { font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 8px; }
+        .role-card p { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
+
+        /* Flags Gallery Layout */
+        .countries-section { background: white; }
+        .flag-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1000px; margin: 0 auto; }
         .flag-card {
-            background: var(--card-bg); padding: 15px; border-radius: 15px; width: 160px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border-bottom: 4px solid var(--accent-red);
+            background: var(--bg-light); padding: 12px; border-radius: 12px; width: 150px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02); text-align: center; border-bottom: 3px solid var(--accent-red);
         }
-        .flag-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        /* Object-fit changed to 'contain' to fix Sri Lanka zoom issue */
-        .flag-card img { width: 100%; height: 85px; object-fit: contain; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0; background: #fff; }
-        .flag-card h3 { font-size: 1rem; color: var(--text-dark); }
+        .flag-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .flag-card img { width: 100%; height: 75px; object-fit: contain; border-radius: 6px; margin-bottom: 10px; background: #fff; border: 1px solid #e2e8f0; }
+        .flag-card h3 { font-size: 0.95rem; color: var(--text-dark); }
 
-        /* Contact Details */
-        .contact-section { background: white; padding: 60px 20px; text-align: center; }
-        .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
-        /* word-break added below to prevent long emails from overflowing on mobile */
-        .contact-box { background: var(--bg-light); padding: 20px 40px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; word-break: break-word; }
-        .contact-box a { color: var(--primary-blue); text-decoration: none; }
+        /* Smart Contact Elements */
+        .contact-grid { display: flex; flex-direction: column; align-items: center; gap: 15px; max-width: 500px; margin: 0 auto; }
+        .contact-box { background: var(--bg-light); border-radius: 12px; width: 100%; text-align: center; font-weight: 600; font-size: 1.05rem; box-shadow: 0 2px 8px rgba(0,0,0,0.01); }
+        .contact-box a { color: var(--primary-blue); text-decoration: none; display: block; padding: 16px 25px; }
         .contact-box:hover { background: var(--primary-blue); color: white; }
         .contact-box:hover a { color: white; }
+        
+        /* Specific dynamic handling for wide text block to prevent layout breaking */
+        .email-box { font-size: 0.95rem; letter-spacing: -0.3px; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-        /* Footer */
-        footer { background: var(--primary-blue); color: white; text-align: center; padding: 40px 20px; }
-        footer p { margin-bottom: 10px; opacity: 0.9; }
-        .cr-number { color: #fcd34d; font-weight: bold; font-size: 1.2rem; margin-top: 15px; }
+        /* Footer Elements */
+        footer { background: var(--primary-blue); color: white; text-align: center; padding: 35px 24px; }
+        footer p { margin-bottom: 8px; opacity: 0.85; font-size: 0.95rem; }
+        .cr-number { color: #fcd34d; font-weight: bold; font-size: 1.15rem; margin-top: 12px; letter-spacing: 0.5px; }
 
-        /* RTL Support for Arabic */
+        /* Global Right-to-Left Alignment Engine */
         [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .hero, [dir="rtl"] .vision-section, [dir="rtl"] .countries-section, [dir="rtl"] .contact-section, [dir="rtl"] footer { text-align: center; }
+        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card { text-align: center; }
+        
+        /* Mobile System Optimization Override */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.95rem; }
+            .section-title { font-size: 1.6rem; }
+            .roles-grid { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 10px 5px 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
+            .role-card { min-width: 230px; scroll-snap-align: center; }
+            .email-box { font-size: 0.85rem; padding: 16px 12px !important; }
+        }
     </style>
 </head>
 <body>
@@ -114,7 +140,7 @@
     <!-- Splash Screen Gatekeeper -->
     <div id="splash-screen" class="fade-in">
         <img src="./logo.png" alt="Al-Nashat Logo" class="splash-logo" onerror="this.style.display='none'">
-        <h2 style="margin-bottom: 30px; color: var(--primary-blue);">Select Language / اختر اللغة</h2>
+        <h2 style="margin-bottom: 25px; color: var(--primary-blue); font-size: 1.4rem;">Select Language / اختر اللغة</h2>
         <div class="lang-btn-container">
             <button class="btn-lang" onclick="enterSite('en')">English</button>
             <button class="btn-lang" onclick="enterSite('ar')">العربية</button>
@@ -130,93 +156,119 @@
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
-        <!-- Hero Section (Now includes Logo) -->
-        <section class="hero fade-in">
-            <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 200px; margin-bottom: 20px;" onerror="this.style.display='none'">
+        <!-- Compliance Banner Block -->
+        <div class="badge-container fade-in stagger-1">
+            <div class="badge-lmra" data-en="✓ Fully Compliant with LMRA Regulations" data-ar="✓ متوافقون تماماً مع تنظيمات هيئة تنظيم سوق العمل">
+                ✓ Fully Compliant with LMRA Regulations
+            </div>
+        </div>
+
+        <!-- Main Branded Introduction Grid -->
+        <section class="hero fade-in stagger-2">
+            <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 180px; margin-0 auto 20px;" onerror="this.style.display='none'">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
-            <p data-en="Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved." data-ar="نربط العائلات في البحرين بعمالة منزلية موثوقة وماهرة. معتمدون بالكامل من هيئة تنظيم سوق العمل.">Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved.</p>
-            <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Chat on WhatsApp" data-ar="💬 تواصل عبر الواتساب">💬 Chat on WhatsApp</a>
+            <p data-en="Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations." data-ar="نربط العائلات في مملكة البحرين بكفاءات وموارد بشرية متخصصة وموثوقة. تلتزم عمليات التوظيف لدينا بقوانين العمل واللوائح التنفيذية المحلية بشكل صارم.">Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations.</p>
+            <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Direct Consultation via WhatsApp" data-ar="💬 استشارة مباشرة عبر الواتساب">💬 Direct Consultation via WhatsApp</a>
         </section>
 
-        <!-- Vision & Services Section -->
-        <section class="vision-section fade-in">
-            <h2 data-en="Our Vision" data-ar="رؤيتنا">Our Vision</h2>
-            <p data-en="To be the most trusted and reliable partner for families in Bahrain, setting the standard for professionalism in the manpower industry." data-ar="أن نكون الشريك الأكثر ثقة وموثوقية للعائلات في البحرين، واضعين معايير الاحترافية في قطاع القوى العاملة.">
-                To be the most trusted and reliable partner for families in Bahrain, setting the standard for professionalism in the manpower industry.
-            </p>
+        <!-- Dynamic Organizational Objectives Text Sections -->
+        <section class="slide-up stagger-3" style="background: white;">
+            <h2 class="section-title" data-en="Our Vision" data-ar="رؤيتنا">Our Vision</h2>
+            <p class="section-desc" data-en="To build institutional excellence in domestic service sourcing across Bahrain, providing families with lawful, transparent, and safe placements that give absolute peace of mind." data-ar="بناء التميز المؤسسي في استقطاب العمالة المنزلية بجميع أنحاء البحرين، وتزويد الأسر بتوظيف قانوني وشفاف وآمن يمنح راحة البال المطلقة.">To build institutional excellence in domestic service sourcing across Bahrain, providing families with lawful, transparent, and safe placements that give absolute peace of mind.</p>
 
-            <h2 data-en="What We Do" data-ar="ما نقوم به" style="margin-top: 40px;">What We Do</h2>
-            <p data-en="We specialize in sourcing, verifying, and placing highly skilled domestic workers tailored to your family's unique needs, ensuring total peace of mind." data-ar="نحن متخصصون في توظيف وتدقيق وتوفير عمالة منزلية ماهرة مصممة خصيصاً لتلبية احتياجات عائلتك الفريدة، مما يضمن لك راحة البال التامة.">
-                We specialize in sourcing, verifying, and placing highly skilled domestic workers tailored to your family's unique needs, ensuring total peace of mind.
-            </p>
+            <h2 class="section-title" data-en="What We Do" data-ar="ما نقوم به" style="margin-top: 30px;">What We Do</h2>
+            <p class="section-desc" data-en="We manage candidate verification and visa coordination to deliver premium solutions tailored to domestic environments while ensuring comprehensive regulatory compliance." data-ar="نتولى إدارة التدقيق والتحقق من الخلفيات للمرشحين وتنسيق التأشيرات لتقديم حلول ممتازة ومصممة خصيصاً للبيئات المنزلية مع ضمان الامتثال التنظيمي الشامل.">We manage candidate verification and visa coordination to deliver premium solutions tailored to domestic environments while ensuring comprehensive regulatory compliance.</p>
         </section>
 
-        <!-- Dynamic Flags Gallery -->
-        <section class="countries-section">
-            <h2 class="fade-in" data-en="Countries Available Today" data-ar="الدول المتاحة اليوم">Countries Available Today</h2>
+        <!-- Authorized Specializations Sub-section -->
+        <section class="slide-up stagger-4">
+            <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
+            <p class="section-desc" data-en="All human resource fields are qualified in accordance with professional training standards and local deployment criteria." data-ar="جميع الكوادر مؤهلة وفقاً لمعايير التدريب المهني واشتراطات الاستقدام المحلية.">All human resource fields are qualified in accordance with professional training standards and local deployment criteria.</p>
+            
+            <div class="roles-grid">
+                <div class="role-card">
+                    <div class="role-icon">🧑‍🍳</div>
+                    <h3 data-en="House Cooks" data-ar="طباخون">House Cooks</h3>
+                    <p data-en="Experienced culinary personnel specialized in meal preparation and home kitchen management." data-ar="كوادر طهي ذوي خبرة متخصصون في إعداد الوجبات وإدارة المطابخ المنزلية.">Experienced culinary personnel specialized in meal preparation and home kitchen management.</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon">🧹</div>
+                    <h3 data-en="House Cleaners" data-ar="عاملات تنظيف">House Cleaners</h3>
+                    <p data-en="Detail-oriented professionals dedicated to home sanitation and structural housekeeping duties." data-ar="محترفون دقيقون مكرسون لتعقيم المنازل والقيام بمهام التدبير المنزلي الأساسية.">Detail-oriented professionals dedicated to home sanitation and structural housekeeping duties.</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon">👶</div>
+                    <h3 data-en="Nannies" data-ar="مربيات أطفال">Nannies</h3>
+                    <p data-en="Attentive professionals equipped to support child safety, development, and daily routine assistance." data-ar="مربيات ذوات انتباه عالٍ مؤهلات لدعم سلامة الأطفال وتنمية مهاراتهم والمساعدة في الأنشطة اليومية.">Attentive professionals equipped to support child safety, development, and daily routine assistance.</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon">🧓</div>
+                    <h3 data-en="Caregivers" data-ar="مقدمو رعاية">Caregivers</h3>
+                    <p data-en="Compassionate staff trained in assisting the elderly with daily living needs and companion care." data-ar="كوادر متعاطفة مدربة على مساعدة كبار السن في احتياجات المعيشة اليومية ورعايتهم صحياً ونفسياً.">Compassionate staff trained in assisting the elderly with daily living needs and companion care.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Recruitment Sourcing Channels -->
+        <section class="countries-section slide-up stagger-5">
+            <h2 class="section-title" data-en="Global Sourcing Channels" data-ar="قنوات الاستقدام العالمية">Global Sourcing Channels</h2>
+            <p class="section-desc" data-en="We route placements through officially verified global pathways to guarantee legal processing." data-ar="نوفر الاستقدام عبر مسارات عالمية معتمدة رسمياً لضمان سلامة الإجراءات القانونية.">We route placements through officially verified global pathways to guarantee legal processing.</p>
             <div class="flag-grid">
-                <div class="flag-card slide-up">
+                <div class="flag-card">
                     <img src="./kenya.png" alt="Kenya" onerror="this.style.display='none'">
                     <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
                 </div>
-                <div class="flag-card slide-up">
+                <div class="flag-card">
                     <img src="./uganda.png" alt="Uganda" onerror="this.style.display='none'">
                     <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
                 </div>
-                <div class="flag-card slide-up">
+                <div class="flag-card">
                     <img src="./ethiopia.png" alt="Ethiopia" onerror="this.style.display='none'">
                     <h3 data-en="Ethiopia" data-ar="إثيوبيا">Ethiopia</h3>
                 </div>
-                <!-- Fixed to .jpeg based on your GitHub files -->
-                <div class="flag-card slide-up">
-                    <img src="./philippines.jpeg" alt="Philippines" onerror="this.style.display='none'">
+                <!-- Dynamic backup string verification logic handles .png lookup fallback -->
+                <div class="flag-card">
+                    <img src="./philippines.png" alt="Philippines" onerror="this.src='./philippines.jpeg'; this.onerror=function(){this.style.display='none';};">
                     <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
                 </div>
-                <div class="flag-card slide-up">
+                <div class="flag-card">
                     <img src="./srilanka.png" alt="Sri Lanka" onerror="this.style.display='none'">
                     <h3 data-en="Sri Lanka" data-ar="سريلانكا">Sri Lanka</h3>
                 </div>
             </div>
         </section>
 
-        <!-- Smart Contact Section -->
-        <section class="contact-section fade-in">
-            <h2 data-en="Contact Us" data-ar="اتصل بنا" style="color: var(--primary-blue);">Contact Us</h2>
+        <!-- Interface Communication Architecture -->
+        <section class="contact-section slide-up">
+            <h2 data-en="Official Inquiry Channels" data-ar="قنوات الاستفسار الرسمية" style="color: var(--primary-blue); margin-bottom: 25px;">Official Inquiry Channels</h2>
             <div class="contact-grid">
-                <!-- Landline (Call Only) -->
                 <div class="contact-box">
-                    📞 <a href="tel:+97317001098">1700 1098</a>
+                    <a href="tel:+97317001098">📞 Landline: 1700 1098</a>
                 </div>
-                
-                <!-- WhatsApp (Mobile 1 - Call & Chat) -->
                 <div class="contact-box">
-                    📱 <a href="https://wa.me/97333226722">3322 6722</a>
+                    <a href="https://wa.me/97333226722">📱 Mobile Liaison 1: 3322 6722</a>
                 </div>
-                
-                <!-- WhatsApp (Mobile 2 - Call & Chat) -->
                 <div class="contact-box">
-                    📱 <a href="https://wa.me/97334219006">3421 9006</a>
+                    <a href="https://wa.me/97334219006">📱 Mobile Liaison 2: 3421 9006</a>
                 </div>
-
-                <!-- Email (With Word-Break to prevent overflow) -->
-                <div class="contact-box" style="width: 100%; max-width: 400px;">
-                    ✉️ <a href="mailto:alnashatmanpowerofficial@gmail.com">alnashatmanpowerofficial@gmail.com</a>
+                <!-- The custom inline style layout class here guarantees total structural horizontal integrity -->
+                <div class="contact-box">
+                    <a href="mailto:alnashatmanpowerofficial@gmail.com" class="email-box">✉️ alnashatmanpowerofficial@gmail.com</a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="fade-in">
+        <!-- Institutional Declarations Footer -->
+        <footer>
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
             <p data-en="Muharraq, Kingdom of Bahrain" data-ar="المحرق، مملكة البحرين">Muharraq, Kingdom of Bahrain</p>
-            <!-- Static CR Number (Stays the same in English & Arabic) -->
             <p class="cr-number">CR: 25545-4</p>
         </footer>
 
     </div>
 
-    <!-- Translation Logic -->
+    <!-- Execution Engine Logic -->
     <script>
         let currentLang = 'en';
 
@@ -225,7 +277,6 @@
             const mainContent = document.getElementById('main-content');
             mainContent.style.display = 'block';
             
-            // Trigger animation
             setTimeout(() => { 
                 mainContent.style.opacity = '1'; 
             }, 50);
@@ -241,14 +292,11 @@
         function applyLanguage(lang) {
             currentLang = lang;
             
-            // Set text direction (Right-to-Left for Arabic)
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
 
-            // Change button text
             document.getElementById('lang-toggle-btn').innerText = lang === 'en' ? 'العربية' : 'English';
 
-            // Swap all translated text
             document.querySelectorAll('[data-en]').forEach(element => {
                 element.innerText = element.getAttribute(`data-${lang}`);
             });
