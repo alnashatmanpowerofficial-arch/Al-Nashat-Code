@@ -60,7 +60,7 @@
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
         /* Hero Section */
-        .hero { text-align: center; padding: 80px 20px 50px; }
+        .hero { text-align: center; padding: 50px 20px 40px; }
         .hero h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 20px; }
         .hero p { font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
         .btn-main {
@@ -69,6 +69,11 @@
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
         .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+
+        /* Vision Section */
+        .vision-section { background: white; padding: 40px 20px; text-align: center; }
+        .vision-section h2 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 15px; }
+        .vision-section p { font-size: 1.1rem; color: #475569; max-width: 800px; margin: 0 auto; line-height: 1.6; }
 
         /* Flags Gallery */
         .countries-section { padding: 50px 20px; text-align: center; }
@@ -81,13 +86,15 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border-bottom: 4px solid var(--accent-red);
         }
         .flag-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .flag-card img { width: 100%; height: 85px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        /* Object-fit changed to 'contain' to fix Sri Lanka zoom issue */
+        .flag-card img { width: 100%; height: 85px; object-fit: contain; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0; background: #fff; }
         .flag-card h3 { font-size: 1rem; color: var(--text-dark); }
 
         /* Contact Details */
         .contact-section { background: white; padding: 60px 20px; text-align: center; }
         .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
-        .contact-box { background: var(--bg-light); padding: 20px 40px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; }
+        /* word-break added below to prevent long emails from overflowing on mobile */
+        .contact-box { background: var(--bg-light); padding: 20px 40px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; word-break: break-word; }
         .contact-box a { color: var(--primary-blue); text-decoration: none; }
         .contact-box:hover { background: var(--primary-blue); color: white; }
         .contact-box:hover a { color: white; }
@@ -99,7 +106,7 @@
 
         /* RTL Support for Arabic */
         [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .hero, [dir="rtl"] .countries-section, [dir="rtl"] .contact-section, [dir="rtl"] footer { text-align: center; }
+        [dir="rtl"] .hero, [dir="rtl"] .vision-section, [dir="rtl"] .countries-section, [dir="rtl"] .contact-section, [dir="rtl"] footer { text-align: center; }
     </style>
 </head>
 <body>
@@ -123,11 +130,25 @@
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
-        <!-- Hero -->
+        <!-- Hero Section (Now includes Logo) -->
         <section class="hero fade-in">
+            <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 200px; margin-bottom: 20px;" onerror="this.style.display='none'">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
             <p data-en="Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved." data-ar="نربط العائلات في البحرين بعمالة منزلية موثوقة وماهرة. معتمدون بالكامل من هيئة تنظيم سوق العمل.">Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved.</p>
             <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Chat on WhatsApp" data-ar="💬 تواصل عبر الواتساب">💬 Chat on WhatsApp</a>
+        </section>
+
+        <!-- Vision & Services Section -->
+        <section class="vision-section fade-in">
+            <h2 data-en="Our Vision" data-ar="رؤيتنا">Our Vision</h2>
+            <p data-en="To be the most trusted and reliable partner for families in Bahrain, setting the standard for professionalism in the manpower industry." data-ar="أن نكون الشريك الأكثر ثقة وموثوقية للعائلات في البحرين، واضعين معايير الاحترافية في قطاع القوى العاملة.">
+                To be the most trusted and reliable partner for families in Bahrain, setting the standard for professionalism in the manpower industry.
+            </p>
+
+            <h2 data-en="What We Do" data-ar="ما نقوم به" style="margin-top: 40px;">What We Do</h2>
+            <p data-en="We specialize in sourcing, verifying, and placing highly skilled domestic workers tailored to your family's unique needs, ensuring total peace of mind." data-ar="نحن متخصصون في توظيف وتدقيق وتوفير عمالة منزلية ماهرة مصممة خصيصاً لتلبية احتياجات عائلتك الفريدة، مما يضمن لك راحة البال التامة.">
+                We specialize in sourcing, verifying, and placing highly skilled domestic workers tailored to your family's unique needs, ensuring total peace of mind.
+            </p>
         </section>
 
         <!-- Dynamic Flags Gallery -->
@@ -146,8 +167,9 @@
                     <img src="./ethiopia.png" alt="Ethiopia" onerror="this.style.display='none'">
                     <h3 data-en="Ethiopia" data-ar="إثيوبيا">Ethiopia</h3>
                 </div>
+                <!-- Fixed to .jpeg based on your GitHub files -->
                 <div class="flag-card slide-up">
-                    <img src="./philippines.png" alt="Philippines" onerror="this.style.display='none'">
+                    <img src="./philippines.jpeg" alt="Philippines" onerror="this.style.display='none'">
                     <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
                 </div>
                 <div class="flag-card slide-up">
@@ -157,14 +179,29 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Smart Contact Section -->
         <section class="contact-section fade-in">
             <h2 data-en="Contact Us" data-ar="اتصل بنا" style="color: var(--primary-blue);">Contact Us</h2>
             <div class="contact-grid">
-                <div class="contact-box">📞 <a href="tel:+97317001098">1700 1098</a></div>
-                <div class="contact-box">📱 <a href="https://wa.me/97333226722">3322 6722</a></div>
-                <div class="contact-box">📱 <a href="https://wa.me/97334219006">3421 9006</a></div>
-                <div class="contact-box" style="width: 100%; max-width: 400px;">✉️ <a href="mailto:alnashatmanpowerofficial@gmail.com">alnashatmanpowerofficial@gmail.com</a></div>
+                <!-- Landline (Call Only) -->
+                <div class="contact-box">
+                    📞 <a href="tel:+97317001098">1700 1098</a>
+                </div>
+                
+                <!-- WhatsApp (Mobile 1 - Call & Chat) -->
+                <div class="contact-box">
+                    📱 <a href="https://wa.me/97333226722">3322 6722</a>
+                </div>
+                
+                <!-- WhatsApp (Mobile 2 - Call & Chat) -->
+                <div class="contact-box">
+                    📱 <a href="https://wa.me/97334219006">3421 9006</a>
+                </div>
+
+                <!-- Email (With Word-Break to prevent overflow) -->
+                <div class="contact-box" style="width: 100%; max-width: 400px;">
+                    ✉️ <a href="mailto:alnashatmanpowerofficial@gmail.com">alnashatmanpowerofficial@gmail.com</a>
+                </div>
             </div>
         </section>
 
@@ -173,7 +210,8 @@
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
             <p data-en="Muharraq, Kingdom of Bahrain" data-ar="المحرق، مملكة البحرين">Muharraq, Kingdom of Bahrain</p>
-            <p class="cr-number" data-en="CR: 25545-4" data-ar="سجل تجاري: 25545-4">CR: 25545-4</p>
+            <!-- Static CR Number (Stays the same in English & Arabic) -->
+            <p class="cr-number">CR: 25545-4</p>
         </footer>
 
     </div>
