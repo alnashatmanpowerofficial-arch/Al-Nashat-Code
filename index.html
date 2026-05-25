@@ -17,6 +17,20 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; transition: all 0.3s ease; }
         body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
 
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .fade-in { animation: fadeIn 1s ease-in-out forwards; }
+        .slide-up { opacity: 0; animation: slideUp 0.8s ease-out forwards; }
+        
+        /* Staggered animation delays for flags */
+        .flag-card:nth-child(1) { animation-delay: 0.1s; }
+        .flag-card:nth-child(2) { animation-delay: 0.2s; }
+        .flag-card:nth-child(3) { animation-delay: 0.3s; }
+        .flag-card:nth-child(4) { animation-delay: 0.4s; }
+        .flag-card:nth-child(5) { animation-delay: 0.5s; }
+
         /* Splash Screen Modal */
         #splash-screen {
             position: fixed; inset: 0; background: white; z-index: 9999;
@@ -28,7 +42,7 @@
             padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border: 2px solid var(--primary-blue);
             background: white; color: var(--primary-blue); border-radius: 50px; cursor: pointer;
         }
-        .btn-lang:hover { background: var(--primary-blue); color: white; }
+        .btn-lang:hover { background: var(--primary-blue); color: white; transform: scale(1.05); }
 
         /* Main Website Layout */
         #main-content { display: none; opacity: 0; }
@@ -43,6 +57,7 @@
             background: var(--bg-light); color: var(--primary-blue); border: 1px solid #cbd5e1;
             padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: bold;
         }
+        .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
         /* Hero Section */
         .hero { text-align: center; padding: 80px 20px 50px; }
@@ -53,6 +68,7 @@
             font-size: 1.1rem; font-weight: bold; border-radius: 50px; display: inline-block;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
 
         /* Flags Gallery */
         .countries-section { padding: 50px 20px; text-align: center; }
@@ -64,6 +80,7 @@
             background: var(--card-bg); padding: 15px; border-radius: 15px; width: 160px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border-bottom: 4px solid var(--accent-red);
         }
+        .flag-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .flag-card img { width: 100%; height: 85px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
         .flag-card h3 { font-size: 1rem; color: var(--text-dark); }
 
@@ -72,6 +89,8 @@
         .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
         .contact-box { background: var(--bg-light); padding: 20px 40px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; }
         .contact-box a { color: var(--primary-blue); text-decoration: none; }
+        .contact-box:hover { background: var(--primary-blue); color: white; }
+        .contact-box:hover a { color: white; }
 
         /* Footer */
         footer { background: var(--primary-blue); color: white; text-align: center; padding: 40px 20px; }
@@ -86,8 +105,8 @@
 <body>
 
     <!-- Splash Screen Gatekeeper -->
-    <div id="splash-screen">
-        <img src="logo.png" alt="Al-Nashat Logo" class="splash-logo">
+    <div id="splash-screen" class="fade-in">
+        <img src="./logo.png" alt="Al-Nashat Logo" class="splash-logo" onerror="this.style.display='none'">
         <h2 style="margin-bottom: 30px; color: var(--primary-blue);">Select Language / اختر اللغة</h2>
         <div class="lang-btn-container">
             <button class="btn-lang" onclick="enterSite('en')">English</button>
@@ -99,13 +118,13 @@
     <div id="main-content">
         
         <!-- Header -->
-        <header>
-            <img src="logo.png" alt="Al-Nashat Logo" class="nav-logo">
+        <header class="fade-in">
+            <img src="./logo.png" alt="Al-Nashat Logo" class="nav-logo" onerror="this.style.display='none'">
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
         <!-- Hero -->
-        <section class="hero">
+        <section class="hero fade-in">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
             <p data-en="Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved." data-ar="نربط العائلات في البحرين بعمالة منزلية موثوقة وماهرة. معتمدون بالكامل من هيئة تنظيم سوق العمل.">Connecting families in Bahrain with trustworthy, highly skilled domestic workers. Fully LMRA approved.</p>
             <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Chat on WhatsApp" data-ar="💬 تواصل عبر الواتساب">💬 Chat on WhatsApp</a>
@@ -113,33 +132,33 @@
 
         <!-- Dynamic Flags Gallery -->
         <section class="countries-section">
-            <h2 data-en="Countries Available Today" data-ar="الدول المتاحة اليوم">Countries Available Today</h2>
+            <h2 class="fade-in" data-en="Countries Available Today" data-ar="الدول المتاحة اليوم">Countries Available Today</h2>
             <div class="flag-grid">
-                <div class="flag-card">
-                    <img src="kenya.png" alt="Kenya">
+                <div class="flag-card slide-up">
+                    <img src="./kenya.png" alt="Kenya" onerror="this.style.display='none'">
                     <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
                 </div>
-                <div class="flag-card">
-                    <img src="uganda.png" alt="Uganda">
+                <div class="flag-card slide-up">
+                    <img src="./uganda.png" alt="Uganda" onerror="this.style.display='none'">
                     <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
                 </div>
-                <div class="flag-card">
-                    <img src="ethiopia.png" alt="Ethiopia">
+                <div class="flag-card slide-up">
+                    <img src="./ethiopia.png" alt="Ethiopia" onerror="this.style.display='none'">
                     <h3 data-en="Ethiopia" data-ar="إثيوبيا">Ethiopia</h3>
                 </div>
-                <div class="flag-card">
-                    <img src="philippines.png" alt="Philippines">
+                <div class="flag-card slide-up">
+                    <img src="./philippines.png" alt="Philippines" onerror="this.style.display='none'">
                     <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
                 </div>
-                <div class="flag-card">
-                    <img src="srilanka.png" alt="Sri Lanka">
+                <div class="flag-card slide-up">
+                    <img src="./srilanka.png" alt="Sri Lanka" onerror="this.style.display='none'">
                     <h3 data-en="Sri Lanka" data-ar="سريلانكا">Sri Lanka</h3>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="contact-section">
+        <section class="contact-section fade-in">
             <h2 data-en="Contact Us" data-ar="اتصل بنا" style="color: var(--primary-blue);">Contact Us</h2>
             <div class="contact-grid">
                 <div class="contact-box">📞 <a href="tel:+97317001098">1700 1098</a></div>
@@ -150,7 +169,7 @@
         </section>
 
         <!-- Footer -->
-        <footer>
+        <footer class="fade-in">
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
             <p data-en="Muharraq, Kingdom of Bahrain" data-ar="المحرق، مملكة البحرين">Muharraq, Kingdom of Bahrain</p>
@@ -167,7 +186,12 @@
             document.getElementById('splash-screen').style.display = 'none';
             const mainContent = document.getElementById('main-content');
             mainContent.style.display = 'block';
-            setTimeout(() => { mainContent.style.opacity = '1'; }, 50);
+            
+            // Trigger animation
+            setTimeout(() => { 
+                mainContent.style.opacity = '1'; 
+            }, 50);
+            
             applyLanguage(lang);
         }
 
