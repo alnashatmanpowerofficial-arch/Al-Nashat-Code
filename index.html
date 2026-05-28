@@ -60,8 +60,24 @@
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
+        /* --- Eid Mubarak Decorations --- */
+        .eid-banner {
+            background-color: #0b3d2c; color: #f1c40f; text-align: center;
+            padding: 14px 20px; font-size: 1.1rem; font-weight: bold;
+            border-bottom: 3px solid #f1c40f; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* --- Temporary Alert Notice --- */
+        .alert-notice {
+            background-color: #fff3cd; color: #856404; border-left: 6px solid #ffeeba;
+            padding: 18px 25px; margin: 25px auto 0; max-width: 900px;
+            font-size: 1.05rem; line-height: 1.6; border-radius: 8px; font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02); text-align: left;
+        }
+        [dir="rtl"] .alert-notice { border-left: none; border-right: 6px solid #ffeeba; text-align: right; }
+
         /* Hero Section */
-        .hero { text-align: center; padding: 50px 24px 30px; background: white; }
+        .hero { text-align: center; padding: 40px 24px 30px; background: white; }
         .hero h1 { font-size: 2.4rem; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.5px; }
         .hero p { font-size: 1.1rem; color: #475569; max-width: 620px; margin: 0 auto 25px; line-height: 1.6; }
         .btn-main {
@@ -122,12 +138,16 @@
         .contact-box:hover { background: var(--primary-blue); color: white; }
         .contact-box:hover a { color: white; }
         
-        /* Solves the email overlap/cut-off issue perfectly */
-        .email-box { 
-            word-break: break-word; 
-            white-space: normal; 
-            line-height: 1.4;
+        .email-box { word-break: break-word; white-space: normal; line-height: 1.4; }
+
+        /* --- Instagram Button --- */
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white !important; text-decoration: none; display: block; padding: 16px 25px;
+            border-radius: 12px; font-weight: bold; font-size: 1.1rem; text-align: center;
+            box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); width: 100%; margin-top: 5px;
         }
+        .instagram-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220, 39, 67, 0.35); }
 
         /* Footer Elements */
         footer { background: var(--primary-blue); color: white; text-align: center; padding: 40px 24px; }
@@ -169,8 +189,20 @@
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
+        <!-- Eid Mubarak Decoration Banner -->
+        <div class="eid-banner fade-in" data-en="🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy on this blessed Eid al-Adha. ⭐" data-ar="🌙 عيد مبارك! نتمنى لعملائنا السلام والوئام والفرح العميم في عيد الأضحى المبارك. ⭐">
+            🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy on this blessed Eid al-Adha. ⭐
+        </div>
+
+        <!-- Temporary Health Notice -->
+        <div style="padding: 0 6%;">
+            <div class="alert-notice fade-in stagger-1" data-en="⚠️ Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives." data-ar="⚠️ إشعار مؤقت: تم إيقاف دخول واستقدام العمالة المنزلية من أوغندا مؤقتًا لمدة 30 يومًا، اعتبارًا من 19 مايو 2026، امتثالاً للتوجيهات الصحية.">
+                ⚠️ Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives.
+            </div>
+        </div>
+
         <!-- Hero Section -->
-        <section class="hero fade-in stagger-1">
+        <section class="hero fade-in stagger-2">
             <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 180px; margin: 0 auto 20px;" onerror="this.style.display='none'">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
             <p data-en="Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations." data-ar="نربط العائلات في مملكة البحرين بكفاءات وموارد بشرية متخصصة وموثوقة. تلتزم عمليات التوظيف لدينا بقوانين العمل واللوائح التنفيذية المحلية بشكل صارم.">Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations.</p>
@@ -178,7 +210,7 @@
         </section>
 
         <!-- Exclusive Sri Lanka Partnership Block -->
-        <div class="fade-in stagger-2" style="padding: 0 6%;">
+        <div class="fade-in stagger-3" style="padding: 0 6%;">
             <div class="exclusive-box">
                 <img src="./srilanka.png" alt="Sri Lanka Flag" onerror="this.style.display='none'">
                 <h2 data-en="Exclusive Sri Lankan Partnerships" data-ar="شراكات سريلانكية حصرية">Exclusive Sri Lankan Partnerships</h2>
@@ -189,7 +221,7 @@
         </div>
 
         <!-- Authorized Specializations Sub-section -->
-        <section class="slide-up stagger-3" style="background: white;">
+        <section class="slide-up stagger-4" style="background: white;">
             <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
             <p class="section-desc" data-en="All human resource fields are qualified in accordance with professional training standards and local deployment criteria." data-ar="جميع الكوادر مؤهلة وفقاً لمعايير التدريب المهني واشتراطات الاستقدام المحلية.">All human resource fields are qualified in accordance with professional training standards and local deployment criteria.</p>
             
@@ -218,7 +250,7 @@
         </section>
 
         <!-- Compliance & Medical Trust Section -->
-        <section class="slide-up stagger-4">
+        <section class="slide-up stagger-5">
             <h2 class="section-title" data-en="Our Commitment to Safety & Law" data-ar="التزامنا بالسلامة والقانون">Our Commitment to Safety & Law</h2>
             <div class="trust-grid">
                 <!-- LMRA Block -->
@@ -280,6 +312,10 @@
                 <div class="contact-box">
                     <a href="mailto:alnashatmanpowerofficial@gmail.com" class="email-box">✉️ alnashatmanpowerofficial@gmail.com</a>
                 </div>
+                <!-- New Instagram Integration Button -->
+                <a href="https://www.instagram.com/alnashatmanpowerofficial?igsh=MWVmMHptMTY3ZzVvbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="instagram-btn" data-en="📸 Check out our Instagram profile" data-ar="📸 تفضل بزيارة حسابنا على إنستغرام">
+                    📸 Check out our Instagram profile
+                </a>
             </div>
         </section>
 
