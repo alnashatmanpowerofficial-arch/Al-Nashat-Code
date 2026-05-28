@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This tag completely hides the GitHub Pages site from Google and other search engines -->
+    <meta name="robots" content="noindex, nofollow">
     <title>Al-Nashat Manpower Services</title>
     <style>
         /* Base Variables & Reset */
@@ -128,7 +130,10 @@
         /* Trust Sections (Medical & LMRA) */
         .trust-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; }
         .trust-card { background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; }
-        .trust-card img { max-width: 70px; margin-bottom: 20px; }
+        
+        /* Updated to force the checkmark and medical cross to be the exact same size */
+        .trust-card img { width: 70px; height: 70px; object-fit: contain; margin-bottom: 20px; }
+        
         .trust-card h3 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 15px; }
         .trust-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
 
