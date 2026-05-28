@@ -21,11 +21,11 @@
         /* Premium Animations */
         @keyframes customFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes customSlideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideInRight { from { right: -400px; opacity: 0; } to { right: 20px; opacity: 1; } }
         
         .fade-in { animation: customFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .slide-up { opacity: 0; animation: customSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* Staggered delays for a fluid visual flow */
         .stagger-1 { animation-delay: 0.1s; }
         .stagger-2 { animation-delay: 0.2s; }
         .stagger-3 { animation-delay: 0.3s; }
@@ -51,7 +51,7 @@
         /* Navigation Header */
         header {
             background: white; padding: 12px 6%; display: flex; justify-content: space-between;
-            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 100;
+            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
         }
         .nav-logo { max-height: 50px; }
         .toggle-lang {
@@ -60,24 +60,47 @@
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
-        /* --- Eid Mubarak Decorations --- */
+        /* --- Integrated Eid Banner --- */
         .eid-banner {
-            background-color: #0b3d2c; color: #f1c40f; text-align: center;
-            padding: 14px 20px; font-size: 1.1rem; font-weight: bold;
-            border-bottom: 3px solid #f1c40f; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background: linear-gradient(90deg, #0b3d2c, #145a43); color: #f1c40f; 
+            text-align: center; padding: 12px 20px; font-size: 1.05rem; font-weight: 600;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
         }
 
-        /* --- Temporary Alert Notice --- */
+        /* --- Integrated Alert Notice --- */
+        .alert-container { padding: 20px 6% 0; background: white; }
         .alert-notice {
-            background-color: #fff3cd; color: #856404; border-left: 6px solid #ffeeba;
-            padding: 18px 25px; margin: 25px auto 0; max-width: 900px;
-            font-size: 1.05rem; line-height: 1.6; border-radius: 8px; font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02); text-align: left;
+            background-color: #fff8e6; color: #856404; border: 1px solid #ffeeba;
+            border-left: 5px solid #d69e2e; padding: 16px 20px; max-width: 1000px; margin: 0 auto;
+            font-size: 1rem; line-height: 1.5; border-radius: 6px; font-weight: 500;
+            display: flex; align-items: flex-start; gap: 15px;
         }
-        [dir="rtl"] .alert-notice { border-left: none; border-right: 6px solid #ffeeba; text-align: right; }
+        .alert-icon { font-size: 1.4rem; line-height: 1; }
+        [dir="rtl"] .alert-notice { border-left: 1px solid #ffeeba; border-right: 5px solid #d69e2e; }
+
+        /* --- Floating Eid Pop-up (Decor 1) --- */
+        .eid-popup {
+            position: fixed; bottom: 30px; right: -400px; z-index: 1000;
+            background: white; border-radius: 16px; padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 1px solid #f1f5f9;
+            display: flex; align-items: center; gap: 15px; max-width: 360px;
+            animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 2s; /* Delays pop-up by 2 seconds */
+        }
+        [dir="rtl"] .eid-popup { right: auto; left: -400px; animation-name: slideInLeft; }
+        @keyframes slideInLeft { from { left: -400px; opacity: 0; } to { left: 20px; opacity: 1; } }
+        
+        .eid-popup img { width: 90px; height: auto; border-radius: 8px; }
+        .eid-popup-text h4 { color: var(--primary-blue); margin-bottom: 4px; font-size: 1.15rem; }
+        .eid-popup-text p { color: #64748b; font-size: 0.9rem; line-height: 1.4; }
+        .close-popup {
+            position: absolute; top: 10px; right: 12px; background: none; border: none;
+            font-size: 1.2rem; color: #94a3b8; cursor: pointer;
+        }
+        [dir="rtl"] .close-popup { right: auto; left: 12px; }
+        .close-popup:hover { color: var(--accent-red); }
 
         /* Hero Section */
-        .hero { text-align: center; padding: 40px 24px 30px; background: white; }
+        .hero { text-align: center; padding: 40px 24px 40px; background: white; }
         .hero h1 { font-size: 2.4rem; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.5px; }
         .hero p { font-size: 1.1rem; color: #475569; max-width: 620px; margin: 0 auto 25px; line-height: 1.6; }
         .btn-main {
@@ -95,7 +118,7 @@
         /* Exclusive Sri Lanka Highlight Box */
         .exclusive-box {
             background: #fff9eb; border: 2px solid #ffeeba; border-radius: 16px; 
-            padding: 40px 24px; max-width: 900px; margin: 40px auto; 
+            padding: 40px 24px; max-width: 900px; margin: 0 auto 40px; 
             box-shadow: 0 10px 30px rgba(214, 158, 46, 0.1); text-align: center;
         }
         .exclusive-box img { width: 80px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
@@ -140,7 +163,7 @@
         
         .email-box { word-break: break-word; white-space: normal; line-height: 1.4; }
 
-        /* --- Instagram Button --- */
+        /* Instagram Button */
         .instagram-btn {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white !important; text-decoration: none; display: block; padding: 16px 25px;
@@ -156,7 +179,7 @@
 
         /* Global Right-to-Left Alignment Engine */
         [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box { text-align: center; }
+        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box, [dir="rtl"] .eid-popup-text { text-align: center; }
         
         /* Mobile System Optimization */
         @media (max-width: 480px) {
@@ -165,6 +188,9 @@
             .roles-grid { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 10px 5px 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
             .role-card { min-width: 230px; scroll-snap-align: center; }
             .trust-card { padding: 25px 15px; }
+            .eid-popup { right: 5%; left: 5%; bottom: 20px; max-width: 90%; animation: slideUpMobile 0.8s forwards 2s; }
+            @keyframes slideUpMobile { from { bottom: -200px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
+            [dir="rtl"] .eid-popup { right: 5%; left: 5%; animation: slideUpMobile 0.8s forwards 2s; }
         }
     </style>
 </head>
@@ -183,21 +209,34 @@
     <!-- Main Website -->
     <div id="main-content">
         
+        <!-- Eid Mubarak Integrated Top Banner -->
+        <div class="eid-banner fade-in" data-en="🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy. ⭐" data-ar="🌙 عيد مبارك! نتمنى لعملائنا السلام والوئام والفرح العميم. ⭐">
+            🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy. ⭐
+        </div>
+
         <!-- Header -->
         <header class="fade-in">
             <img src="./logo.png" alt="Al-Nashat Logo" class="nav-logo" onerror="this.style.display='none'">
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
-        <!-- Eid Mubarak Decoration Banner -->
-        <div class="eid-banner fade-in" data-en="🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy on this blessed Eid al-Adha. ⭐" data-ar="🌙 عيد مبارك! نتمنى لعملائنا السلام والوئام والفرح العميم في عيد الأضحى المبارك. ⭐">
-            🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy on this blessed Eid al-Adha. ⭐
+        <!-- Temporary Health Notice (Integrated neatly below header) -->
+        <div class="alert-container fade-in stagger-1">
+            <div class="alert-notice">
+                <div class="alert-icon">⚠️</div>
+                <div data-en="Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives." data-ar="إشعار مؤقت: تم إيقاف دخول واستقدام العمالة المنزلية من أوغندا مؤقتًا لمدة 30 يومًا، اعتبارًا من 19 مايو 2026، امتثالاً للتوجيهات الصحية.">
+                    Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives.
+                </div>
+            </div>
         </div>
 
-        <!-- Temporary Health Notice -->
-        <div style="padding: 0 6%;">
-            <div class="alert-notice fade-in stagger-1" data-en="⚠️ Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives." data-ar="⚠️ إشعار مؤقت: تم إيقاف دخول واستقدام العمالة المنزلية من أوغندا مؤقتًا لمدة 30 يومًا، اعتبارًا من 19 مايو 2026، امتثالاً للتوجيهات الصحية.">
-                ⚠️ Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives.
+        <!-- Floating Pop-up Card (Decor 1) -->
+        <div class="eid-popup" id="eidPopup">
+            <button class="close-popup" onclick="document.getElementById('eidPopup').style.display='none'">✖</button>
+            <img src="./image_28.png" alt="Eid al-Adha Decoration" onerror="this.style.display='none'">
+            <div class="eid-popup-text">
+                <h4 data-en="Eid al-Adha Mubarak!" data-ar="عيد أضحى مبارك!">Eid al-Adha Mubarak!</h4>
+                <p data-en="Celebrate this blessed season with peace and prosperity." data-ar="نحتفل بهذا الموسم المبارك بالسلام والازدهار.">Celebrate this blessed season with peace and prosperity.</p>
             </div>
         </div>
 
@@ -221,7 +260,7 @@
         </div>
 
         <!-- Authorized Specializations Sub-section -->
-        <section class="slide-up stagger-4" style="background: white;">
+        <section class="slide-up stagger-4" style="background: white; padding-top: 20px;">
             <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
             <p class="section-desc" data-en="All human resource fields are qualified in accordance with professional training standards and local deployment criteria." data-ar="جميع الكوادر مؤهلة وفقاً لمعايير التدريب المهني واشتراطات الاستقدام المحلية.">All human resource fields are qualified in accordance with professional training standards and local deployment criteria.</p>
             
@@ -308,11 +347,10 @@
                 <div class="contact-box">
                     <a href="https://wa.me/97334219006">📱 Mobile Phone 2: 3421 9006</a>
                 </div>
-                <!-- Email box with break-word to prevent layout breaking -->
                 <div class="contact-box">
                     <a href="mailto:alnashatmanpowerofficial@gmail.com" class="email-box">✉️ alnashatmanpowerofficial@gmail.com</a>
                 </div>
-                <!-- New Instagram Integration Button -->
+                <!-- Instagram Integration Button -->
                 <a href="https://www.instagram.com/alnashatmanpowerofficial?igsh=MWVmMHptMTY3ZzVvbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="instagram-btn" data-en="📸 Check out our Instagram profile" data-ar="📸 تفضل بزيارة حسابنا على إنستغرام">
                     📸 Check out our Instagram profile
                 </a>
@@ -324,7 +362,6 @@
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
             <p data-en="Muharraq, Kingdom of Bahrain" data-ar="المحرق، مملكة البحرين">Muharraq, Kingdom of Bahrain</p>
-            <!-- Commercial Registration Number ONLY -->
             <p class="cr-number">CR: 25545-4</p>
         </footer>
 
