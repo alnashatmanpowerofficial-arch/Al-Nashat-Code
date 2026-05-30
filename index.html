@@ -62,13 +62,6 @@
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
-        /* --- Integrated Eid Banner --- */
-        .eid-banner {
-            background: linear-gradient(90deg, #0b3d2c, #145a43); color: #f1c40f; 
-            text-align: center; padding: 12px 20px; font-size: 1.05rem; font-weight: 600;
-            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
-        }
-
         /* --- Integrated Alert Notice --- */
         .alert-container { padding: 20px 6% 0; background: white; }
         .alert-notice {
@@ -79,27 +72,6 @@
         }
         .alert-icon { font-size: 1.4rem; line-height: 1; }
         [dir="rtl"] .alert-notice { border-left: 1px solid #ffeeba; border-right: 5px solid #d69e2e; }
-
-        /* --- Floating Eid Pop-up (Decor 1) --- */
-        .eid-popup {
-            position: fixed; bottom: 30px; right: -400px; z-index: 1000;
-            background: white; border-radius: 16px; padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 1px solid #f1f5f9;
-            display: flex; align-items: center; gap: 15px; max-width: 360px;
-            animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 2s; /* Delays pop-up by 2 seconds */
-        }
-        [dir="rtl"] .eid-popup { right: auto; left: -400px; animation-name: slideInLeft; }
-        @keyframes slideInLeft { from { left: -400px; opacity: 0; } to { left: 20px; opacity: 1; } }
-        
-        .eid-popup img { width: 90px; height: auto; border-radius: 8px; }
-        .eid-popup-text h4 { color: var(--primary-blue); margin-bottom: 4px; font-size: 1.15rem; }
-        .eid-popup-text p { color: #64748b; font-size: 0.9rem; line-height: 1.4; }
-        .close-popup {
-            position: absolute; top: 10px; right: 12px; background: none; border: none;
-            font-size: 1.2rem; color: #94a3b8; cursor: pointer;
-        }
-        [dir="rtl"] .close-popup { right: auto; left: 12px; }
-        .close-popup:hover { color: var(--accent-red); }
 
         /* Hero Section */
         .hero { text-align: center; padding: 40px 24px 40px; background: white; }
@@ -184,7 +156,7 @@
 
         /* Global Right-to-Left Alignment Engine */
         [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box, [dir="rtl"] .eid-popup-text { text-align: center; }
+        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box { text-align: center; }
         
         /* Mobile System Optimization */
         @media (max-width: 480px) {
@@ -193,9 +165,6 @@
             .roles-grid { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 10px 5px 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
             .role-card { min-width: 230px; scroll-snap-align: center; }
             .trust-card { padding: 25px 15px; }
-            .eid-popup { right: 5%; left: 5%; bottom: 20px; max-width: 90%; animation: slideUpMobile 0.8s forwards 2s; }
-            @keyframes slideUpMobile { from { bottom: -200px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
-            [dir="rtl"] .eid-popup { right: 5%; left: 5%; animation: slideUpMobile 0.8s forwards 2s; }
         }
     </style>
 </head>
@@ -213,11 +182,6 @@
 
     <!-- Main Website -->
     <div id="main-content">
-        
-        <!-- Eid Mubarak Integrated Top Banner -->
-        <div class="eid-banner fade-in" data-en="🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy. ⭐" data-ar="🌙 عيد مبارك! نتمنى لعملائنا السلام والوئام والفرح العميم. ⭐">
-            🌙 Eid Mubarak! Wishing our clients peace, harmony, and abundant joy. ⭐
-        </div>
 
         <!-- Header -->
         <header class="fade-in">
@@ -232,16 +196,6 @@
                 <div data-en="Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives." data-ar="إشعار مؤقت: تم إيقاف دخول واستقدام العمالة المنزلية من أوغندا مؤقتًا لمدة 30 يومًا، اعتبارًا من 19 مايو 2026، امتثالاً للتوجيهات الصحية.">
                     Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives.
                 </div>
-            </div>
-        </div>
-
-        <!-- Floating Pop-up Card (Decor 1) -->
-        <div class="eid-popup" id="eidPopup">
-            <button class="close-popup" onclick="document.getElementById('eidPopup').style.display='none'">✖</button>
-            <img src="./image_28.png" alt="Eid al-Adha Decoration" onerror="this.style.display='none'">
-            <div class="eid-popup-text">
-                <h4 data-en="Eid al-Adha Mubarak!" data-ar="عيد أضحى مبارك!">Eid al-Adha Mubarak!</h4>
-                <p data-en="Celebrate this blessed season with peace and prosperity." data-ar="نحتفل بهذا الموسم المبارك بالسلام والازدهار.">Celebrate this blessed season with peace and prosperity.</p>
             </div>
         </div>
 
