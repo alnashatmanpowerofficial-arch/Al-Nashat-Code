@@ -22,7 +22,6 @@
             --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.04);
             --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.08);
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-fast: all 0.3s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +39,7 @@
 
         html { scroll-behavior: smooth; }
 
-        /* Smooth Scroll Reveal Classes */
+        /* Scroll Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -49,19 +48,22 @@
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Splash Screen Modal */
+        /* Splash Screen (Updated to Solid White for Seamless Logo Blending) */
         #splash-screen {
-            position: fixed; inset: 0; background: var(--bg-base); z-index: 9999;
+            position: fixed; inset: 0; background: #FFFFFF; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
         
-        /* Fixed Splash Logo Size & Blending */
-        @keyframes subtlePulse { 0% { transform: scale(0.98); opacity: 0.9; } 50% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.98); opacity: 0.9; } }
+        @keyframes subtlePulse { 
+            0% { transform: scale(0.98); opacity: 0.9; } 
+            50% { transform: scale(1); opacity: 1; } 
+            100% { transform: scale(0.98); opacity: 0.9; } 
+        }
         .splash-logo { 
             width: 90%; max-width: 420px; margin-bottom: 50px; 
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.06));
             animation: subtlePulse 4s infinite ease-in-out;
+            /* White background allows any internal logo box to vanish entirely */
         }
         
         .splash-title { margin-bottom: 30px; color: var(--primary-blue); font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
@@ -69,7 +71,7 @@
         .lang-btn-container { display: flex; gap: 20px; }
         .btn-lang {
             padding: 18px 45px; font-size: 18px; font-weight: 600; 
-            background: var(--surface-color); color: var(--primary-blue); 
+            background: var(--bg-base); color: var(--primary-blue); 
             border: 2px solid transparent; border-radius: var(--radius-pill); cursor: pointer;
             box-shadow: var(--shadow-soft); transition: var(--transition-smooth);
         }
@@ -78,9 +80,19 @@
             background: var(--primary-blue); color: white; border-color: var(--primary-blue);
         }
 
-        /* Language Switch Animation Engine */
-        #main-content { transition: opacity 0.4s ease, transform 0.4s ease; display: none; opacity: 0; }
-        body.lang-switching #main-content { opacity: 0; transform: translateY(15px); }
+        /* Apple-Style Language Switch Overlay Transition */
+        #page-transition-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 99999; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease-in-out;
+        }
+        body.lang-switching #page-transition-overlay {
+            opacity: 1; pointer-events: all;
+        }
+        
+        #main-content { display: none; opacity: 0; transition: opacity 0.6s ease; }
 
         /* Glassmorphism Header */
         header {
@@ -95,9 +107,23 @@
         .toggle-lang {
             background: rgba(0,0,0,0.04); color: var(--primary-blue); border: 1px solid rgba(0,0,0,0.05);
             padding: 10px 24px; border-radius: var(--radius-pill); cursor: pointer; 
-            font-weight: 600; font-size: 15px; transition: var(--transition-fast);
+            font-weight: 600; font-size: 15px; transition: var(--transition-smooth);
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
+
+        /* Custom Wave Animation for Flags */
+        @keyframes gentleWave {
+            0% { transform: rotateZ(0deg) translateY(0px) scale(1); }
+            25% { transform: rotateZ(-2deg) translateY(-2px) scale(1.01); }
+            50% { transform: rotateZ(2deg) translateY(1px) scale(1); }
+            75% { transform: rotateZ(-1deg) translateY(-1px) scale(0.99); }
+            100% { transform: rotateZ(0deg) translateY(0px) scale(1); }
+        }
+        .waving-flag {
+            animation: gentleWave 5s infinite ease-in-out;
+            transform-origin: bottom center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
 
         /* Temporary Notice Banner */
         .alert-container { padding: 110px 6% 0; display: flex; justify-content: center; }
@@ -111,7 +137,7 @@
 
         /* Hero Section */
         .hero { text-align: center; padding: 8vh 6% 8vh; display: flex; flex-direction: column; align-items: center; }
-        .hero-logo { width: 100%; max-width: 200px; margin-bottom: 30px; }
+        .hero-logo { width: 100%; max-width: 200px; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05)); }
         .hero h1 { 
             font-size: clamp(36px, 6vw, 68px); font-weight: 700; 
             letter-spacing: -0.04em; color: var(--primary-blue); 
@@ -135,7 +161,7 @@
         .section-title { font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.02em; }
         .section-desc { font-size: 18px; color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.6; }
 
-        /* Exclusive Sri Lanka Box */
+        /* Exclusive Sri Lanka Box (Fixed Oval Issue) */
         .exclusive-wrapper { padding: 0 6% 80px; }
         .exclusive-box {
             background: var(--surface-color); border-radius: var(--radius-lg); 
@@ -143,9 +169,17 @@
             box-shadow: var(--shadow-soft); text-align: center;
             border: 2px solid rgba(214, 158, 46, 0.15);
             transition: var(--transition-smooth);
+            display: flex; flex-direction: column; align-items: center;
         }
         .exclusive-box:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
-        .exclusive-box img { width: 80px; border-radius: 8px; margin-bottom: 20px; border: 1px solid rgba(0,0,0,0.05); }
+        
+        /* Updated Sri Lanka Flag Styling - Full Rectangular Shape */
+        .exclusive-box img { 
+            width: 140px; height: 90px; object-fit: cover; 
+            border-radius: 8px; margin-bottom: 24px; 
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
         .exclusive-box h2 { font-size: 32px; font-weight: 700; color: var(--lmra-gold); margin-bottom: 20px; letter-spacing: -0.01em; }
         .exclusive-box p { color: var(--text-main); font-size: 18px; max-width: 850px; margin: 0 auto; line-height: 1.6; }
 
@@ -160,7 +194,6 @@
             text-align: center; border: 1px solid rgba(0,0,0,0.02);
         }
         .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: rgba(0,51,160,0.1); }
-        
         .role-icon { font-size: 44px; margin-bottom: 20px; display: inline-block; }
         .card h3 { font-size: 22px; font-weight: 600; color: var(--primary-blue); margin-bottom: 12px; }
         .card p { font-size: 16px; color: var(--text-muted); line-height: 1.6; }
@@ -176,7 +209,7 @@
         .trust-card h3 { font-size: 24px; font-weight: 600; color: var(--primary-blue); margin-bottom: 16px; }
         .trust-card p { font-size: 16px; color: var(--text-muted); line-height: 1.6; max-width: 400px; }
 
-        /* Global Sourcing - Flags Fix (Preventing layout breaks) */
+        /* Global Sourcing - Flag Cards */
         .flag-card {
             background: var(--surface-color); padding: 30px 20px; border-radius: var(--radius-lg);
             box-shadow: var(--shadow-soft); transition: var(--transition-smooth);
@@ -185,10 +218,14 @@
             min-height: 180px;
         }
         .flag-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .flag-img-wrapper { height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; width: 100%; }
         
-        /* The wrapper fixes the height issue when images fail to load */
-        .flag-img-wrapper { height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; width: 100%; }
-        .flag-img-wrapper img { max-width: 120px; max-height: 80px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); background: #fff; padding: 2px; }
+        /* Updated strictly for PNG assets and exact sizes */
+        .flag-img-wrapper img { 
+            width: 120px; height: 80px; object-fit: cover; 
+            border-radius: 6px; background: #fff; border: 1px solid rgba(0,0,0,0.05); 
+        }
+        
         .flag-card h3 { font-size: 18px; font-weight: 700; color: var(--text-main); margin: 0; }
 
         /* Smart Contact Elements */
@@ -240,6 +277,9 @@
         </div>
     </div>
 
+    <!-- Apple-Style Transition Overlay -->
+    <div id="page-transition-overlay"></div>
+
     <!-- Main Website -->
     <div id="main-content">
 
@@ -249,7 +289,7 @@
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
-        <!-- Temporary Alert (Preserved Exact Text) -->
+        <!-- Temporary Alert Notice -->
         <div class="alert-container reveal">
             <div class="alert-notice">
                 <div class="alert-icon">⚠️</div>
@@ -259,7 +299,7 @@
             </div>
         </div>
 
-        <!-- Hero Section (Preserved Exact Text) -->
+        <!-- Hero Section -->
         <section class="hero reveal">
             <img src="./logo.png" alt="Al-Nashat Logo" class="hero-logo" onerror="this.style.display='none'">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
@@ -267,10 +307,10 @@
             <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Direct Consultation via WhatsApp" data-ar="💬 استشارة مباشرة عبر الواتساب">💬 Direct Consultation via WhatsApp</a>
         </section>
 
-        <!-- Sri Lanka Feature Box (Preserved Exact Text) -->
+        <!-- Sri Lanka Feature Box (Fixed to Correct Square Flag) -->
         <div class="exclusive-wrapper reveal">
             <div class="exclusive-box">
-                <img src="./srilanka.png" alt="Sri Lanka Flag" onerror="this.style.display='none'">
+                <img src="./srilanka.png" alt="Sri Lanka Flag" class="waving-flag" onerror="this.style.display='none'">
                 <h2 data-en="Exclusive Sri Lankan Partnerships" data-ar="شراكات سريلانكية حصرية">Exclusive Sri Lankan Partnerships</h2>
                 <p data-en="Through our exclusive partnerships with premier Sri Lankan agencies, Al-Nashat proudly offers our clients priority access to highly vetted, premium Sri Lankan domestic profiles that you won't find anywhere else." data-ar="من خلال شراكاتنا الحصرية مع كبرى الوكالات السريلانكية، تفخر شركة النشاط بتقديم أولوية الوصول لعملائنا إلى سير ذاتية متميزة وموثوقة للعمالة السريلانكية والتي لن تجدوها في أي مكان آخر.">
                     Through our exclusive partnerships with premier Sri Lankan agencies, Al-Nashat proudly offers our clients priority access to highly vetted, premium Sri Lankan domestic profiles that you won't find anywhere else.
@@ -278,7 +318,7 @@
             </div>
         </div>
 
-        <!-- Authorized Specializations (Preserved Exact Text) -->
+        <!-- Authorized Specializations -->
         <section class="reveal">
             <div class="section-header">
                 <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
@@ -309,7 +349,7 @@
             </div>
         </section>
 
-        <!-- Compliance & Medical Trust (Preserved Exact Text) -->
+        <!-- Compliance & Medical Trust -->
         <section class="reveal">
             <div class="section-header">
                 <h2 class="section-title" data-en="Our Commitment to Safety & Law" data-ar="التزامنا بالسلامة والقانون">Our Commitment to Safety & Law</h2>
@@ -332,7 +372,7 @@
             </div>
         </section>
 
-        <!-- Sourcing Channels (Fixed Layout & Preserved Exact Fallbacks) -->
+        <!-- Global Sourcing Channels (Ensured strict .png paths according to repository) -->
         <section class="reveal">
             <div class="section-header">
                 <h2 class="section-title" data-en="Global Sourcing Channels" data-ar="قنوات الاستقدام العالمية">Global Sourcing Channels</h2>
@@ -341,32 +381,32 @@
             <div class="grid-4" style="max-width: 900px;">
                 <div class="flag-card">
                     <div class="flag-img-wrapper">
-                        <img src="./philippines.jpeg" alt="Philippines" onerror="this.src='./philippines.png'; this.onerror=function(){this.style.display='none';};">
+                        <img src="./philippines.png" alt="Philippines" class="waving-flag" onerror="this.style.display='none'">
                     </div>
                     <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
                 </div>
                 <div class="flag-card">
                     <div class="flag-img-wrapper">
-                        <img src="./ethiopia.png" alt="Ethiopia" onerror="this.style.display='none'">
+                        <img src="./ethiopia.png" alt="Ethiopia" class="waving-flag" onerror="this.style.display='none'">
                     </div>
                     <h3 data-en="Ethiopia" data-ar="إثيوبيا">Ethiopia</h3>
                 </div>
                 <div class="flag-card">
                     <div class="flag-img-wrapper">
-                        <img src="./kenya.png" alt="Kenya" onerror="this.style.display='none'">
+                        <img src="./kenya.png" alt="Kenya" class="waving-flag" onerror="this.style.display='none'">
                     </div>
                     <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
                 </div>
                 <div class="flag-card">
                     <div class="flag-img-wrapper">
-                        <img src="./uganda.jpeg" alt="Uganda" onerror="this.src='./uganda.png'; this.onerror=function(){this.style.display='none';};">
+                        <img src="./uganda.png" alt="Uganda" class="waving-flag" onerror="this.style.display='none'">
                     </div>
                     <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Architecture (Preserved Exact Data) -->
+        <!-- Contact Architecture -->
         <section class="contact-section reveal" style="display: flex; flex-direction: column; align-items: center; padding-top: 80px;">
             <div class="section-header">
                 <h2 class="section-title" data-en="Official Inquiry Channels" data-ar="قنوات الاستفسار الرسمية">Official Inquiry Channels</h2>
@@ -390,7 +430,7 @@
             </div>
         </section>
 
-        <!-- Institutional Declarations Footer (Preserved Exact Text) -->
+        <!-- Institutional Declarations Footer -->
         <footer>
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
@@ -400,7 +440,7 @@
 
     </div>
 
-    <!-- Execution Engine Logic (Added Transition Engine) -->
+    <!-- Enhanced Execution Engine Logic -->
     <script>
         let currentLang = 'en';
 
@@ -413,7 +453,7 @@
                 splash.style.visibility = 'hidden';
                 splash.style.display = 'none';
                 mainContent.style.display = 'block';
-                // Trigger reflow
+                // Trigger reflow for smooth loading
                 void mainContent.offsetWidth;
                 mainContent.style.opacity = '1';
                 applyLanguage(lang);
@@ -423,14 +463,18 @@
 
         function switchLanguage() {
             const newLang = currentLang === 'en' ? 'ar' : 'en';
-            // Trigger beautiful fade animation
+            
+            // Trigger the Apple-style blur veil transition
             document.body.classList.add('lang-switching');
             
             setTimeout(() => {
                 applyLanguage(newLang);
-                // Remove fade class to bring content back smoothly
-                document.body.classList.remove('lang-switching');
-            }, 400); // Wait for the 0.4s CSS opacity transition
+                
+                // Allow a slight moment before lifting the veil
+                setTimeout(() => {
+                    document.body.classList.remove('lang-switching');
+                }, 150);
+            }, 400); // Wait for the veil to fully drop
         }
 
         function applyLanguage(lang) {
