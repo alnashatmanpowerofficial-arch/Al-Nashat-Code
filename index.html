@@ -48,7 +48,7 @@
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Splash Screen (Updated to Solid White for Seamless Logo Blending) */
+        /* Splash Screen */
         #splash-screen {
             position: fixed; inset: 0; background: #FFFFFF; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -63,7 +63,6 @@
         .splash-logo { 
             width: 90%; max-width: 420px; margin-bottom: 50px; 
             animation: subtlePulse 4s infinite ease-in-out;
-            /* White background allows any internal logo box to vanish entirely */
         }
         
         .splash-title { margin-bottom: 30px; color: var(--primary-blue); font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
@@ -103,7 +102,8 @@
             border-bottom: 1px solid rgba(0,0,0,0.06);
             padding: 16px 6%; display: flex; justify-content: space-between; align-items: center;
         }
-        .nav-logo { height: 48px; object-fit: contain; }
+        /* Applied mix-blend-mode to nav logo just in case */
+        .nav-logo { height: 48px; object-fit: contain; mix-blend-mode: multiply; }
         .toggle-lang {
             background: rgba(0,0,0,0.04); color: var(--primary-blue); border: 1px solid rgba(0,0,0,0.05);
             padding: 10px 24px; border-radius: var(--radius-pill); cursor: pointer; 
@@ -137,7 +137,13 @@
 
         /* Hero Section */
         .hero { text-align: center; padding: 8vh 6% 8vh; display: flex; flex-direction: column; align-items: center; }
-        .hero-logo { width: 100%; max-width: 200px; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05)); }
+        
+        /* FIX: mix-blend-mode multiply removes the white box around the logo entirely */
+        .hero-logo { 
+            width: 100%; max-width: 200px; margin-bottom: 30px; 
+            mix-blend-mode: multiply;
+        }
+        
         .hero h1 { 
             font-size: clamp(36px, 6vw, 68px); font-weight: 700; 
             letter-spacing: -0.04em; color: var(--primary-blue); 
@@ -161,7 +167,7 @@
         .section-title { font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.02em; }
         .section-desc { font-size: 18px; color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.6; }
 
-        /* Exclusive Sri Lanka Box (Fixed Oval Issue) */
+        /* Exclusive Sri Lanka Box */
         .exclusive-wrapper { padding: 0 6% 80px; }
         .exclusive-box {
             background: var(--surface-color); border-radius: var(--radius-lg); 
@@ -173,11 +179,13 @@
         }
         .exclusive-box:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
         
-        /* Updated Sri Lanka Flag Styling - Full Rectangular Shape */
+        /* FIX: Changed object-fit to contain and height to auto so the flag never cuts off */
         .exclusive-box img { 
-            width: 140px; height: 90px; object-fit: cover; 
-            border-radius: 8px; margin-bottom: 24px; 
+            width: 160px; height: auto; max-height: 100px; 
+            object-fit: contain; 
+            border-radius: 4px; margin-bottom: 24px; 
             border: 1px solid rgba(0,0,0,0.05);
+            background: white; padding: 2px;
         }
         
         .exclusive-box h2 { font-size: 32px; font-weight: 700; color: var(--lmra-gold); margin-bottom: 20px; letter-spacing: -0.01em; }
@@ -220,10 +228,10 @@
         .flag-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .flag-img-wrapper { height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; width: 100%; }
         
-        /* Updated strictly for PNG assets and exact sizes */
+        /* FIX: Ensure these flags are also fully contained and never cropped */
         .flag-img-wrapper img { 
-            width: 120px; height: 80px; object-fit: cover; 
-            border-radius: 6px; background: #fff; border: 1px solid rgba(0,0,0,0.05); 
+            width: 120px; height: 100%; object-fit: contain; 
+            border-radius: 4px; background: #fff; border: 1px solid rgba(0,0,0,0.05); padding: 2px;
         }
         
         .flag-card h3 { font-size: 18px; font-weight: 700; color: var(--text-main); margin: 0; }
@@ -307,7 +315,7 @@
             <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Direct Consultation via WhatsApp" data-ar="💬 استشارة مباشرة عبر الواتساب">💬 Direct Consultation via WhatsApp</a>
         </section>
 
-        <!-- Sri Lanka Feature Box (Fixed to Correct Square Flag) -->
+        <!-- Sri Lanka Feature Box -->
         <div class="exclusive-wrapper reveal">
             <div class="exclusive-box">
                 <img src="./srilanka.png" alt="Sri Lanka Flag" class="waving-flag" onerror="this.style.display='none'">
@@ -372,7 +380,7 @@
             </div>
         </section>
 
-        <!-- Global Sourcing Channels (Ensured strict .png paths according to repository) -->
+        <!-- Global Sourcing Channels -->
         <section class="reveal">
             <div class="section-header">
                 <h2 class="section-title" data-en="Global Sourcing Channels" data-ar="قنوات الاستقدام العالمية">Global Sourcing Channels</h2>
