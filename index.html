@@ -2,178 +2,208 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- This tag completely hides the GitHub Pages site from Google and other search engines -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="robots" content="noindex, nofollow">
     <title>Al-Nashat Manpower Services</title>
     <style>
-        /* Base Variables & Reset */
+        /* Base Variables - Apple Style Palette */
         :root {
             --primary-blue: #0033a0;
             --accent-red: #e3000f;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --card-bg: #ffffff;
-            --whatsapp: #25D366;
+            --bg-base: #F5F5F7; /* Premium light gray */
+            --surface-color: #FFFFFF;
+            --text-main: #1D1D1F;
+            --text-muted: #86868B;
             --lmra-gold: #D69E2E;
+            --whatsapp: #25D366;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --radius-pill: 98px;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 16px 50px rgba(0, 0, 0, 0.08);
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; transition: all 0.25s ease; }
-        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* Premium Animations */
-        @keyframes customFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes customSlideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes slideInRight { from { right: -400px; opacity: 0; } to { right: 20px; opacity: 1; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .fade-in { animation: customFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .slide-up { opacity: 0; animation: customSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-        .stagger-5 { animation-delay: 0.5s; }
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
+        }
 
-        /* Splash Screen Modal */
+        /* Smooth Scroll Behavior */
+        html { scroll-behavior: smooth; }
+
+        /* Scroll Reveal Classes (Triggered by JS) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: var(--transition-smooth);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Splash Screen */
         #splash-screen {
-            position: fixed; inset: 0; background: white; z-index: 9999;
+            position: fixed; inset: 0; background: var(--bg-base); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-        .splash-logo { max-width: 280px; margin-bottom: 30px; }
-        .lang-btn-container { display: flex; gap: 20px; }
+        .splash-logo { width: 220px; margin-bottom: 40px; }
+        .lang-btn-container { display: flex; gap: 16px; }
         .btn-lang {
-            padding: 14px 35px; font-size: 1.1rem; font-weight: bold; border: 2px solid var(--primary-blue);
-            background: white; color: var(--primary-blue); border-radius: 50px; cursor: pointer;
+            padding: 16px 40px; font-size: 17px; font-weight: 600; 
+            background: var(--surface-color); color: var(--text-main); 
+            border: none; border-radius: var(--radius-pill); cursor: pointer;
+            box-shadow: var(--shadow-soft); transition: var(--transition-smooth);
         }
-        .btn-lang:hover { background: var(--primary-blue); color: white; transform: translateY(-2px); }
+        .btn-lang:hover { 
+            transform: scale(1.02); box-shadow: var(--shadow-hover); 
+            background: var(--primary-blue); color: white;
+        }
 
-        /* Main Website Layout */
-        #main-content { display: none; opacity: 0; }
-        
-        /* Navigation Header */
+        #main-content { display: none; opacity: 0; transition: opacity 1s ease; }
+
+        /* Glassmorphism Header */
         header {
-            background: white; padding: 12px 6%; display: flex; justify-content: space-between;
-            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 12px 6%; display: flex; justify-content: space-between; align-items: center;
         }
-        .nav-logo { max-height: 50px; }
+        .nav-logo { height: 44px; object-fit: contain; }
         .toggle-lang {
-            background: var(--bg-light); color: var(--primary-blue); border: 1px solid #cbd5e1;
-            padding: 8px 18px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.95rem;
+            background: rgba(0,0,0,0.05); color: var(--text-main); border: none;
+            padding: 8px 20px; border-radius: var(--radius-pill); cursor: pointer; 
+            font-weight: 600; font-size: 14px; transition: var(--transition-smooth);
         }
         .toggle-lang:hover { background: var(--primary-blue); color: white; }
 
-        /* --- Integrated Alert Notice --- */
-        .alert-container { padding: 20px 6% 0; background: white; }
+        /* Temporary Notice Banner */
+        .alert-container { padding: 90px 6% 0; display: flex; justify-content: center; }
         .alert-notice {
-            background-color: #fff8e6; color: #856404; border: 1px solid #ffeeba;
-            border-left: 5px solid #d69e2e; padding: 16px 20px; max-width: 1000px; margin: 0 auto;
-            font-size: 1rem; line-height: 1.5; border-radius: 6px; font-weight: 500;
-            display: flex; align-items: flex-start; gap: 15px;
+            background: rgba(214, 158, 46, 0.1); color: #975A16; 
+            padding: 12px 24px; border-radius: var(--radius-pill);
+            font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 10px;
+            backdrop-filter: blur(10px);
         }
-        .alert-icon { font-size: 1.4rem; line-height: 1; }
-        [dir="rtl"] .alert-notice { border-left: 1px solid #ffeeba; border-right: 5px solid #d69e2e; }
 
         /* Hero Section */
-        .hero { text-align: center; padding: 40px 24px 40px; background: white; }
-        .hero h1 { font-size: 2.4rem; color: var(--primary-blue); margin-bottom: 16px; letter-spacing: -0.5px; }
-        .hero p { font-size: 1.1rem; color: #475569; max-width: 620px; margin: 0 auto 25px; line-height: 1.6; }
+        .hero { text-align: center; padding: 10vh 6% 8vh; display: flex; flex-direction: column; align-items: center; }
+        .hero h1 { 
+            font-size: clamp(40px, 6vw, 72px); font-weight: 700; 
+            letter-spacing: -0.04em; color: var(--text-main); 
+            max-width: 900px; margin-bottom: 24px; line-height: 1.05;
+        }
+        .hero p { 
+            font-size: clamp(19px, 2vw, 24px); color: var(--text-muted); 
+            max-width: 700px; margin-bottom: 40px; font-weight: 400; line-height: 1.4;
+        }
         .btn-main {
-            background: var(--whatsapp); color: white; text-decoration: none; padding: 14px 32px;
-            font-size: 1.05rem; font-weight: bold; border-radius: 50px; display: inline-block;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+            background: var(--whatsapp); color: white; text-decoration: none; 
+            padding: 18px 40px; font-size: 17px; font-weight: 600; 
+            border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25); transition: var(--transition-smooth);
         }
-        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35); }
+        .btn-main:hover { transform: scale(1.02); box-shadow: 0 12px 32px rgba(37, 211, 102, 0.35); }
 
-        /* Section Global Layout */
-        section { padding: 50px 6%; text-align: center; }
-        .section-title { font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 16px; }
-        .section-desc { font-size: 1.05rem; color: #475569; max-width: 750px; margin: 0 auto 35px; line-height: 1.6; }
+        /* Global Section Layout */
+        section { padding: 100px 6%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: clamp(32px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.03em; }
+        .section-desc { font-size: 19px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
 
-        /* Exclusive Sri Lanka Highlight Box */
+        /* High-End Feature Box (Sri Lanka) */
+        .exclusive-wrapper { padding: 0 6% 100px; }
         .exclusive-box {
-            background: #fff9eb; border: 2px solid #ffeeba; border-radius: 16px; 
-            padding: 40px 24px; max-width: 900px; margin: 0 auto 40px; 
-            box-shadow: 0 10px 30px rgba(214, 158, 46, 0.1); text-align: center;
+            background: var(--surface-color); border-radius: var(--radius-lg); 
+            padding: 60px 40px; max-width: 1000px; margin: 0 auto; 
+            box-shadow: var(--shadow-soft); text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
         }
-        .exclusive-box img { width: 80px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
-        .exclusive-box h2 { color: var(--lmra-gold); font-size: 1.8rem; margin-bottom: 15px; }
-        .exclusive-box p { color: #475569; font-size: 1.1rem; line-height: 1.6; font-weight: 500; }
+        .exclusive-box img { width: 72px; border-radius: 50%; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .exclusive-box h2 { font-size: 32px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; }
+        .exclusive-box p { color: var(--text-muted); font-size: 19px; max-width: 700px; margin: 0 auto; }
 
-        /* Trust Sections (Medical & LMRA) */
-        .trust-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .trust-card { background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; }
-        
-        /* Updated to force the checkmark and medical cross to be the exact same size */
-        .trust-card img { width: 70px; height: 70px; object-fit: contain; margin-bottom: 20px; }
-        
-        .trust-card h3 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 15px; }
-        .trust-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
+        /* Grids */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto; }
 
-        /* Roles & Services Layout */
-        .roles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1100px; margin: 0 auto; }
-        .role-card {
-            background: var(--card-bg); border-radius: 16px; padding: 25px; width: 240px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; text-align: center;
+        /* UI Cards */
+        .card {
+            background: var(--surface-color); border-radius: var(--radius-lg); padding: 40px 30px;
+            box-shadow: var(--shadow-soft); transition: var(--transition-smooth);
+            text-align: center; border: 1px solid rgba(0,0,0,0.02);
         }
-        .role-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
-        .role-icon { font-size: 2rem; margin-bottom: 12px; display: inline-block; }
-        .role-card h3 { font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 8px; }
-        .role-card p { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .card-icon { font-size: 40px; margin-bottom: 20px; display: inline-block; }
+        .card h3 { font-size: 21px; font-weight: 600; margin-bottom: 12px; }
+        .card p { font-size: 15px; color: var(--text-muted); line-height: 1.5; }
 
-        /* Flags Gallery Layout */
-        .flag-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1000px; margin: 0 auto; }
+        /* Trust Images Fixed Size */
+        .trust-img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 24px; }
+
+        /* Flags Gallery Minimalist */
         .flag-card {
-            background: var(--card-bg); padding: 12px; border-radius: 12px; width: 150px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04); text-align: center; border-bottom: 3px solid var(--accent-red);
+            background: transparent; padding: 20px; text-align: center;
         }
-        .flag-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-        .flag-card img { width: 100%; height: 75px; object-fit: contain; border-radius: 6px; margin-bottom: 10px; background: #fff; border: 1px solid #e2e8f0; }
-        .flag-card h3 { font-size: 0.95rem; color: var(--text-dark); font-weight: bold; }
+        .flag-card img { 
+            width: 120px; height: 80px; object-fit: cover; border-radius: 12px; 
+            margin-bottom: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: var(--transition-smooth);
+        }
+        .flag-card:hover img { transform: scale(1.05); }
+        .flag-card h3 { font-size: 17px; font-weight: 600; color: var(--text-main); }
 
         /* Smart Contact Elements */
-        .contact-section { background: white; }
-        .contact-grid { display: flex; flex-direction: column; align-items: center; gap: 15px; max-width: 500px; margin: 0 auto; }
-        .contact-box { background: var(--bg-light); border-radius: 12px; width: 100%; text-align: center; font-weight: 600; font-size: 1.05rem; box-shadow: 0 2px 8px rgba(0,0,0,0.01); }
-        .contact-box a { color: var(--primary-blue); text-decoration: none; display: block; padding: 16px 25px; }
-        .contact-box:hover { background: var(--primary-blue); color: white; }
-        .contact-box:hover a { color: white; }
+        .contact-box {
+            background: var(--surface-color); border-radius: var(--radius-md); text-align: center; 
+            box-shadow: var(--shadow-soft); transition: var(--transition-smooth); margin-bottom: 16px;
+        }
+        .contact-box a { 
+            color: var(--text-main); text-decoration: none; display: block; 
+            padding: 20px; font-size: 17px; font-weight: 500; 
+        }
+        .contact-box:hover { transform: scale(1.01); box-shadow: var(--shadow-hover); }
         
-        .email-box { word-break: break-word; white-space: normal; line-height: 1.4; }
-
-        /* Instagram Button */
         .instagram-btn {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white !important; text-decoration: none; display: block; padding: 16px 25px;
-            border-radius: 12px; font-weight: bold; font-size: 1.1rem; text-align: center;
-            box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); width: 100%; margin-top: 5px;
+            color: white !important; text-decoration: none; display: block; padding: 20px;
+            border-radius: var(--radius-md); font-weight: 600; font-size: 17px; text-align: center;
+            box-shadow: 0 10px 30px rgba(220, 39, 67, 0.25); transition: var(--transition-smooth);
+            margin-top: 16px; width: 100%; max-width: 500px;
         }
-        .instagram-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220, 39, 67, 0.35); }
+        .instagram-btn:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(220, 39, 67, 0.35); }
 
-        /* Footer Elements */
-        footer { background: var(--primary-blue); color: white; text-align: center; padding: 40px 24px; }
-        footer p { margin-bottom: 8px; opacity: 0.85; font-size: 0.95rem; }
-        .cr-number { color: #fcd34d; font-weight: bold; font-size: 1.15rem; margin-top: 12px; letter-spacing: 0.5px; }
+        /* Footer */
+        footer { 
+            background: var(--surface-color); padding: 60px 6%; text-align: center; 
+            border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted);
+        }
+        footer p { font-size: 14px; margin-bottom: 8px; }
+        .cr-number { font-weight: 600; color: var(--text-main); margin-top: 20px; font-size: 15px; }
 
         /* Global Right-to-Left Alignment Engine */
         [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .hero, [dir="rtl"] section, [dir="rtl"] footer, [dir="rtl"] .role-card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box { text-align: center; }
-        
-        /* Mobile System Optimization */
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 1.95rem; }
-            .section-title { font-size: 1.6rem; }
-            .roles-grid { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 10px 5px 20px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
-            .role-card { min-width: 230px; scroll-snap-align: center; }
-            .trust-card { padding: 25px 15px; }
-        }
+        [dir="rtl"] .hero, [dir="rtl"] .section-header, [dir="rtl"] footer, [dir="rtl"] .card, [dir="rtl"] .flag-card, [dir="rtl"] .exclusive-box { text-align: center; }
+        [dir="rtl"] .hero h1, [dir="rtl"] .section-title { letter-spacing: 0; }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen Gatekeeper -->
-    <div id="splash-screen" class="fade-in">
+    <!-- Splash Screen -->
+    <div id="splash-screen">
         <img src="./logo.png" alt="Al-Nashat Logo" class="splash-logo" onerror="this.style.display='none'">
-        <h2 style="margin-bottom: 25px; color: var(--primary-blue); font-size: 1.4rem;">Select Language / اختر اللغة</h2>
         <div class="lang-btn-container">
             <button class="btn-lang" onclick="enterSite('en')">English</button>
             <button class="btn-lang" onclick="enterSite('ar')">العربية</button>
@@ -183,32 +213,34 @@
     <!-- Main Website -->
     <div id="main-content">
 
-        <!-- Header -->
-        <header class="fade-in">
+        <!-- Glassmorphism Header -->
+        <header>
             <img src="./logo.png" alt="Al-Nashat Logo" class="nav-logo" onerror="this.style.display='none'">
             <button class="toggle-lang" onclick="switchLanguage()" id="lang-toggle-btn">العربية</button>
         </header>
 
-        <!-- Temporary Health Notice (Integrated neatly below header) -->
-        <div class="alert-container fade-in stagger-1">
+        <!-- Temporary Alert -->
+        <div class="alert-container reveal">
             <div class="alert-notice">
-                <div class="alert-icon">⚠️</div>
-                <div data-en="Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives." data-ar="إشعار مؤقت: تم إيقاف دخول واستقدام العمالة المنزلية من أوغندا مؤقتًا لمدة 30 يومًا، اعتبارًا من 19 مايو 2026، امتثالاً للتوجيهات الصحية.">
+                <span>⚠️</span>
+                <span data-en="Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives." data-ar="إشعار مؤقت: تم إيقاف دخول واستقدام العمالة المنزلية من أوغندا مؤقتًا لمدة 30 يومًا، اعتبارًا من 19 مايو 2026، امتثالاً للتوجيهات الصحية.">
                     Temporary Notice: The entry and recruitment of domestic workers from Uganda is temporarily paused for 30 days, effective May 19, 2026, in compliance with health directives.
-                </div>
+                </span>
             </div>
         </div>
 
         <!-- Hero Section -->
-        <section class="hero fade-in stagger-2">
-            <img src="./logo.png" alt="Al-Nashat Logo" style="max-width: 180px; margin: 0 auto 20px;" onerror="this.style.display='none'">
+        <section class="hero reveal">
             <h1 data-en="Reliable Domestic Manpower Solutions" data-ar="حلول موثوقة للعمالة المنزلية">Reliable Domestic Manpower Solutions</h1>
             <p data-en="Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations." data-ar="نربط العائلات في مملكة البحرين بكفاءات وموارد بشرية متخصصة وموثوقة. تلتزم عمليات التوظيف لدينا بقوانين العمل واللوائح التنفيذية المحلية بشكل صارم.">Connecting families in the Kingdom of Bahrain with trusted, specialized human resources. Our placement process strictly adheres to local labor laws and executive regulations.</p>
-            <a href="https://wa.me/97333226722" class="btn-main" data-en="💬 Direct Consultation via WhatsApp" data-ar="💬 استشارة مباشرة عبر الواتساب">💬 Direct Consultation via WhatsApp</a>
+            <a href="https://wa.me/97333226722" class="btn-main" data-en="Direct Consultation" data-ar="استشارة مباشرة">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                WhatsApp
+            </a>
         </section>
 
-        <!-- Exclusive Sri Lanka Partnership Block -->
-        <div class="fade-in stagger-3" style="padding: 0 6%;">
+        <!-- Sri Lanka Feature Box -->
+        <div class="exclusive-wrapper reveal">
             <div class="exclusive-box">
                 <img src="./srilanka.png" alt="Sri Lanka Flag" onerror="this.style.display='none'">
                 <h2 data-en="Exclusive Sri Lankan Partnerships" data-ar="شراكات سريلانكية حصرية">Exclusive Sri Lankan Partnerships</h2>
@@ -218,65 +250,68 @@
             </div>
         </div>
 
-        <!-- Authorized Specializations Sub-section -->
-        <section class="slide-up stagger-4" style="background: white; padding-top: 20px;">
-            <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
-            <p class="section-desc" data-en="All human resource fields are qualified in accordance with professional training standards and local deployment criteria." data-ar="جميع الكوادر مؤهلة وفقاً لمعايير التدريب المهني واشتراطات الاستقدام المحلية.">All human resource fields are qualified in accordance with professional training standards and local deployment criteria.</p>
+        <!-- Authorized Specializations -->
+        <section class="reveal">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Authorized Specializations" data-ar="التخصصات المصرح بها">Authorized Specializations</h2>
+                <p class="section-desc" data-en="All human resource fields are qualified in accordance with professional training standards and local deployment criteria." data-ar="جميع الكوادر مؤهلة وفقاً لمعايير التدريب المهني واشتراطات الاستقدام المحلية.">All human resource fields are qualified in accordance with professional training standards and local deployment criteria.</p>
+            </div>
             
-            <div class="roles-grid">
-                <div class="role-card">
-                    <div class="role-icon">🧑‍🍳</div>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">🧑‍🍳</div>
                     <h3 data-en="House Cooks" data-ar="طباخون">House Cooks</h3>
                     <p data-en="Experienced culinary personnel specialized in meal preparation and home kitchen management." data-ar="كوادر طهي ذوي خبرة متخصصون في إعداد الوجبات وإدارة المطابخ المنزلية.">Experienced culinary personnel specialized in meal preparation and home kitchen management.</p>
                 </div>
-                <div class="role-card">
-                    <div class="role-icon">🧹</div>
+                <div class="card">
+                    <div class="card-icon">🧹</div>
                     <h3 data-en="House Cleaners" data-ar="عاملات تنظيف">House Cleaners</h3>
                     <p data-en="Detail-oriented professionals dedicated to home sanitation and structural housekeeping duties." data-ar="محترفون دقيقون مكرسون لتعقيم المنازل والقيام بمهام التدبير المنزلي الأساسية.">Detail-oriented professionals dedicated to home sanitation and structural housekeeping duties.</p>
                 </div>
-                <div class="role-card">
-                    <div class="role-icon">👶</div>
+                <div class="card">
+                    <div class="card-icon">👶</div>
                     <h3 data-en="Nannies" data-ar="مربيات أطفال">Nannies</h3>
                     <p data-en="Attentive professionals equipped to support child safety, development, and daily routine assistance." data-ar="مربيات ذوات انتباه عالٍ مؤهلات لدعم سلامة الأطفال وتنمية مهاراتهم والمساعدة في الأنشطة اليومية.">Attentive professionals equipped to support child safety, development, and daily routine assistance.</p>
                 </div>
-                <div class="role-card">
-                    <div class="role-icon">🧓</div>
+                <div class="card">
+                    <div class="card-icon">🧓</div>
                     <h3 data-en="Caregivers" data-ar="مقدمو رعاية">Caregivers</h3>
                     <p data-en="Compassionate staff trained in assisting the elderly with daily living needs and companion care." data-ar="كوادر متعاطفة مدربة على مساعدة كبار السن في احتياجات المعيشة اليومية ورعايتهم صحياً ونفسياً.">Compassionate staff trained in assisting the elderly with daily living needs and companion care.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Compliance & Medical Trust Section -->
-        <section class="slide-up stagger-5">
-            <h2 class="section-title" data-en="Our Commitment to Safety & Law" data-ar="التزامنا بالسلامة والقانون">Our Commitment to Safety & Law</h2>
-            <div class="trust-grid">
-                <!-- LMRA Block -->
-                <div class="trust-card">
-                    <img src="./checkmark.png" alt="Officially Licensed" onerror="this.style.display='none'">
+        <!-- Compliance & Medical Trust -->
+        <section class="reveal">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Commitment to Safety" data-ar="التزامنا بالسلامة">Commitment to Safety</h2>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <img src="./checkmark.png" alt="Officially Licensed" class="trust-img" onerror="this.style.display='none'">
                     <h3 data-en="Officially Licensed Agency" data-ar="وكالة مرخصة رسمياً">Officially Licensed Agency</h3>
-                    <p data-en="Al-Nashat Manpower Services is a fully licensed manpower agency operating out of Muharraq, Kingdom of Bahrain. We operate in strict compliance with the Labor Market Regulatory Authority (LMRA) and local deployment regulations, ensuring complete legal security for both Bahraini employers and international resources." data-ar="شركة النشاط للقوى العاملة هي وكالة مرخصة رسمياً تعمل من المحرق، مملكة البحرين. نحن نعمل بامتثال تام مع هيئة تنظيم سوق العمل (LMRA) ولوائح الاستقدام المحلية، مما يضمن الأمان القانوني الكامل لكل من أصحاب العمل في البحرين والموارد البشرية الدولية.">
-                        Al-Nashat Manpower Services is a fully licensed manpower agency operating out of Muharraq, Kingdom of Bahrain. We operate in strict compliance with the Labor Market Regulatory Authority (LMRA) and local deployment regulations, ensuring complete legal security for both Bahraini employers and international resources.
+                    <p data-en="Fully licensed manpower agency operating out of Muharraq, complying strictly with the Labor Market Regulatory Authority (LMRA)." data-ar="وكالة مرخصة رسمياً تعمل من المحرق، بامتثال تام مع هيئة تنظيم سوق العمل (LMRA).">
+                        Fully licensed manpower agency operating out of Muharraq, complying strictly with the Labor Market Regulatory Authority (LMRA).
                     </p>
                 </div>
-                <!-- Medical Block -->
-                <div class="trust-card">
-                    <img src="./cross.png" alt="Medical Cross" onerror="this.style.display='none'">
+                <div class="card">
+                    <img src="./cross.png" alt="Medical Cross" class="trust-img" onerror="this.style.display='none'">
                     <h3 data-en="Fully Medically Certified" data-ar="شهادات طبية معتمدة">Fully Medically Certified</h3>
-                    <p data-en="Every domestic worker placed through Al-Nashat undergoes rigorous, comprehensive medical screenings and health checks. We guarantee all candidates are fully certified, healthy, and fit for deployment before they ever enter your home." data-ar="يخضع جميع العمالة المنزلية لدينا لفحوصات طبية وصحية شاملة وصارمة. نحن نضمن أن جميع المرشحين معتمدون طبياً وأصحاء ولائقون للعمل قبل دخولهم إلى منزلك.">
-                        Every domestic worker placed through Al-Nashat undergoes rigorous, comprehensive medical screenings and health checks. We guarantee all candidates are fully certified, healthy, and fit for deployment before they ever enter your home.
+                    <p data-en="Every domestic worker undergoes rigorous medical screenings, ensuring candidates are healthy and fit for deployment." data-ar="يخضع جميع العمالة لفحوصات طبية صارمة، مما يضمن أن المرشحين أصحاء ولائقون للعمل.">
+                        Every domestic worker undergoes rigorous medical screenings, ensuring candidates are healthy and fit for deployment.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Global Recruitment Sourcing Channels -->
-        <section class="slide-up stagger-5" style="background: white;">
-            <h2 class="section-title" data-en="Global Sourcing Channels" data-ar="قنوات الاستقدام العالمية">Global Sourcing Channels</h2>
-            <p class="section-desc" data-en="In addition to our exclusive Sri Lankan network, we route placements through officially verified pathways globally." data-ar="بالإضافة إلى شبكتنا السريلانكية الحصرية، نوفر الاستقدام عبر مسارات عالمية معتمدة رسمياً.">In addition to our exclusive Sri Lankan network, we route placements through officially verified pathways globally.</p>
-            <div class="flag-grid">
+        <!-- Sourcing Channels -->
+        <section class="reveal">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Global Sourcing" data-ar="قنوات الاستقدام العالمية">Global Sourcing</h2>
+            </div>
+            <div class="grid-4" style="max-width: 800px;">
                 <div class="flag-card">
-                    <img src="./philippines.jpeg" alt="Philippines" onerror="this.src='./philippines.png'; this.onerror=function(){this.style.display='none';};">
+                    <img src="./philippines.jpeg" alt="Philippines" onerror="this.src='./philippines.png'; this.onerror=null; this.style.display='none';">
                     <h3 data-en="Philippines" data-ar="الفلبين">Philippines</h3>
                 </div>
                 <div class="flag-card">
@@ -288,36 +323,37 @@
                     <h3 data-en="Kenya" data-ar="كينيا">Kenya</h3>
                 </div>
                 <div class="flag-card">
-                    <img src="./uganda.jpeg" alt="Uganda" onerror="this.src='./uganda.png'; this.onerror=function(){this.style.display='none';};">
+                    <img src="./uganda.jpeg" alt="Uganda" onerror="this.src='./uganda.png'; this.onerror=null; this.style.display='none';">
                     <h3 data-en="Uganda" data-ar="أوغندا">Uganda</h3>
                 </div>
             </div>
         </section>
 
-        <!-- Interface Communication Architecture -->
-        <section class="contact-section slide-up">
-            <h2 data-en="Official Inquiry Channels" data-ar="قنوات الاستفسار الرسمية" style="color: var(--primary-blue); margin-bottom: 25px;">Official Inquiry Channels</h2>
-            <div class="contact-grid">
+        <!-- Contact Architecture -->
+        <section class="reveal" style="display: flex; flex-direction: column; align-items: center; padding-bottom: 120px;">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Inquiry Channels" data-ar="قنوات الاستفسار">Inquiry Channels</h2>
+            </div>
+            <div style="width: 100%; max-width: 500px;">
                 <div class="contact-box">
                     <a href="tel:+97317001098">📞 Landline: 1700 1098</a>
                 </div>
                 <div class="contact-box">
-                    <a href="https://wa.me/97333226722">📱 Mobile Phone 1: 3322 6722</a>
+                    <a href="https://wa.me/97333226722">📱 Mobile: 3322 6722</a>
                 </div>
                 <div class="contact-box">
-                    <a href="https://wa.me/97334219006">📱 Mobile Phone 2: 3421 9006</a>
+                    <a href="https://wa.me/97334219006">📱 Mobile: 3421 9006</a>
                 </div>
                 <div class="contact-box">
-                    <a href="mailto:alnashatmanpowerofficial@gmail.com" class="email-box">✉️ alnashatmanpowerofficial@gmail.com</a>
+                    <a href="mailto:alnashatmanpowerofficial@gmail.com">✉️ alnashatmanpowerofficial@gmail.com</a>
                 </div>
-                <!-- Instagram Integration Button -->
-                <a href="https://www.instagram.com/alnashatmanpowerofficial?igsh=MWVmMHptMTY3ZzVvbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="instagram-btn" data-en="📸 Check out our Instagram profile" data-ar="📸 تفضل بزيارة حسابنا على إنستغرام">
-                    📸 Check out our Instagram profile
+                <a href="https://www.instagram.com/alnashatmanpowerofficial?igsh=MWVmMHptMTY3ZzVvbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="instagram-btn" data-en="View Instagram Profile" data-ar="تفضل بزيارة حسابنا على إنستغرام">
+                    View Instagram Profile
                 </a>
             </div>
         </section>
 
-        <!-- Institutional Declarations Footer -->
+        <!-- Footer -->
         <footer>
             <p data-en="Al-Nashat Manpower Services" data-ar="شركة النشاط للقوى العاملة">Al-Nashat Manpower Services</p>
             <p data-en="Office No. 173P, Road No. 3, Block No. 212" data-ar="مكتب رقم 173P، طريق رقم 3، مجمع رقم 212">Office No. 173P, Road No. 3, Block No. 212</p>
@@ -332,15 +368,20 @@
         let currentLang = 'en';
 
         function enterSite(lang) {
-            document.getElementById('splash-screen').style.display = 'none';
+            const splash = document.getElementById('splash-screen');
             const mainContent = document.getElementById('main-content');
-            mainContent.style.display = 'block';
             
-            setTimeout(() => { 
-                mainContent.style.opacity = '1'; 
-            }, 50);
-            
-            applyLanguage(lang);
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.visibility = 'hidden';
+                splash.style.display = 'none';
+                mainContent.style.display = 'block';
+                // Trigger reflow
+                void mainContent.offsetWidth;
+                mainContent.style.opacity = '1';
+                applyLanguage(lang);
+                initScrollObserver();
+            }, 800);
         }
 
         function switchLanguage() {
@@ -350,14 +391,34 @@
 
         function applyLanguage(lang) {
             currentLang = lang;
-            
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
-
             document.getElementById('lang-toggle-btn').innerText = lang === 'en' ? 'العربية' : 'English';
-
+            
             document.querySelectorAll('[data-en]').forEach(element => {
                 element.innerText = element.getAttribute(`data-${lang}`);
+            });
+        }
+
+        // Intersection Observer for Smooth Apple-style Scroll Reveals
+        function initScrollObserver() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
             });
         }
     </script>
